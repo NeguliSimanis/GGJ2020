@@ -31,4 +31,9 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void toMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
