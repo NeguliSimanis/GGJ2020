@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Fonts.meta
-guid: deac5d677399c9242a4d68eec0b90061
-=======
-guid: b2d75c456f8061f40952687be4e74038
->>>>>>> 37a01323c90fce0dc1985c3b3485aa4c1499f6bd:Assets/AstarPathfindingProject.meta
+guid: 5dec77bbc6995054286c10e9bdae5198
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
