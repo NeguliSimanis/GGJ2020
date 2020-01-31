@@ -8,12 +8,19 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public float Upspeed;
+
+    public int maxHP;
+    public int currentHP;
+    public int Damage;
+
     // Start is called before the first frame update
     void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
         speed = 20f;
         Upspeed = 40f;
+        maxHP = 100;
+        currentHP = maxHP;
     }
 
     // Update is called once per frame
@@ -31,4 +38,10 @@ public class Player : MonoBehaviour
 
         rb.AddForce(movement * speed);
     }
+
+    public void DamagePlayer(int damage)
+    {
+        currentHP = currentHP - damage;
+    }
+
 }
