@@ -14,16 +14,20 @@ public class GodController : MonoBehaviour
     private float questDuration = 60f;
     private List<QuestItem> questItems = new List<QuestItem>();
     private int totalQuestItems = 3;
-    private int itemTypeCount;
+    private int questItemTypeCount;
 
     [Header("UI")]
     [SerializeField]
     GameObject godDialogueBubble;
+    [SerializeField]
+    SpriteRenderer[] dialogueImages;
 
     private void Start()
     {
-        itemTypeCount = ItemType.GetNames(typeof(ItemType)).Length;
+        questItemTypeCount = ItemType.GetNames(typeof(ItemType)).Length-1;
+        DisplayQuestDialogue(false);
         GenerateQuest();
+        DisplayQuestDialogue(true);
     }
 
     public void GenerateQuest()
@@ -36,18 +40,17 @@ public class GodController : MonoBehaviour
             if (i == totalQuestItems - 1
                 && questItems[0].type == questItems[1].type)
             {
-                ItemType newItemType = (ItemType)Random.Range(0, itemTypeCount);
+                ItemType newItemType = (ItemType)Random.Range(0, questItemTypeCount-1);
                 while (newItemType == questItems[0].type)
                 {
-                    newItemType = (ItemType)Random.Range(0, itemTypeCount);
+                    newItemType = (ItemType)Random.Range(0, questItemTypeCount-1);
                 }
                 AddQuestItem(newItemType);
             }
             else
             {
-                AddQuestItem((ItemType)Random.Range(0, itemTypeCount));
+                AddQuestItem((ItemType)Random.Range(0, questItemTypeCount-1));
             }
-         
         }
     }
 
@@ -60,8 +63,26 @@ public class GodController : MonoBehaviour
         Debug.Log("added quest item  " + newQuestItem.type);
     }
 
-    public void DisplayQuestDialogue()
+    public void SubmitItemForQuest(ItemType itemType, Sprite sprite)
     {
+        // TODO - CHECK IF CORRECT TYPE
+       // foreach (f)
 
+        // NO - LOSE LIFE
+        // YES - GAIN LIFE
+    }
+
+    private void DisplayQuestDialogue(bool display)
+    {
+        if (!display)
+            godDialogueBubble.SetActive(false);
+        else
+        {
+            godDialogueBubble.SetActive(true);
+            foreach(SpriteRenderer dialogueImage in dialogueImages)
+            {
+               // dialogueImage.sprite
+            }
+        }    
     }
 }

@@ -6,7 +6,8 @@ public enum ItemType
 {
     Skull,
     Boot,
-    Worm
+    Worm,
+    LifePickup
 }
 public class Item : MonoBehaviour
 {
@@ -28,6 +29,16 @@ public class Item : MonoBehaviour
 
     private void PickupItem()
     {
+        if (itemType != ItemType.LifePickup)
+        {
+            GodController godController = GameObject.FindGameObjectWithTag("God").GetComponent<GodController>();
+            godController.SubmitItemForQuest(itemType, itemSprite);
+        }
+        else if (itemType == ItemType.LifePickup)
+        {
+            //Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            //player.Damage();
+        }
         foreach (Transform child in this.transform)
         {
             GameObject.Destroy(child.gameObject);
