@@ -7,16 +7,20 @@ public class QuestItem
 {
     public ItemType type;
     public bool isFound;
+    public Sprite sprite;
 }
 
 public class GodController : MonoBehaviour
 {
     private float questDuration = 60f;
-    private List<QuestItem> questItems = new List<QuestItem>();
+    [Header("QUEST ITEMS")]
+    [SerializeField]
+    private GameObject[] possibleQuestItems;
+    private List<QuestItem> currentQuestItems = new List<QuestItem>();
     private int totalQuestItems = 3;
     private int questItemTypeCount;
 
-    [Header("UI")]
+    [Header("HUD")]
     [SerializeField]
     GameObject godDialogueBubble;
     [SerializeField]
@@ -24,7 +28,7 @@ public class GodController : MonoBehaviour
 
     private void Start()
     {
-        questItemTypeCount = ItemType.GetNames(typeof(ItemType)).Length-1;
+        questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
         GenerateQuest();
         DisplayQuestDialogue(true);
@@ -32,41 +36,60 @@ public class GodController : MonoBehaviour
 
     public void GenerateQuest()
     {
-        questItems.Clear();
+        currentQuestItems.Clear();
         for (int i = 0; i < totalQuestItems; i++)
         {
             // if two previous items were of the same type, 
             // don't make the third item of the same type as well
             if (i == totalQuestItems - 1
-                && questItems[0].type == questItems[1].type)
+                && currentQuestItems[0].type == currentQuestItems[1].type)
             {
-                ItemType newItemType = (ItemType)Random.Range(0, questItemTypeCount-1);
-                while (newItemType == questItems[0].type)
+                ItemType newItemType = (ItemType)Random.Range(0, questItemTypeCount);
+                while (newItemType == currentQuestItems[0].type)
                 {
-                    newItemType = (ItemType)Random.Range(0, questItemTypeCount-1);
+                    newItemType = (ItemType)Random.Range(0, questItemTypeCount);
                 }
-                AddQuestItem(newItemType);
+                AddQuestItem(newItemType, possibleQuestItems[i]);
             }
             else
             {
-                AddQuestItem((ItemType)Random.Range(0, questItemTypeCount-1));
+                AddQuestItem((ItemType)Random.Range(0, questItemTypeCount),possibleQuestItems[i]);
             }
         }
     }
 
-    private void AddQuestItem(ItemType itemType)
+    private void AddQuestItem(ItemType itemType, GameObject itemPrefab)
     {
         QuestItem newQuestItem = new QuestItem();
         newQuestItem.type = itemType;
         newQuestItem.isFound = false;
-        questItems.Add(newQuestItem);
+        newQuestItem.sprite = itemPrefab.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
+        currentQuestItems.Add(newQuestItem);
         Debug.Log("added quest item  " + newQuestItem.type);
     }
 
     public void SubmitItemForQuest(ItemType itemType, Sprite sprite)
     {
         // TODO - CHECK IF CORRECT TYPE
-       // foreach (f)
+        for (int i = 0; i < currentQuestItems.Count; i++)
+        {
+            if(currentQuestItems[i].isFound == false) 
+            {
+                if (currentQuestItems[i].type != itemType)
+                {
+                    Debug.Log("QUEST FAILED");
+                }
+                else
+                {
+                    Debug.Log("quest step complete");
+                    if (i == currentQuestItems.Count - 1)
+                    {
+                        Debug.Log("ALL QUESTS COMPLETE");
+                    }
+                }
+                return;
+            }
+        }
 
         // NO - LOSE LIFE
         // YES - GAIN LIFE
@@ -78,10 +101,11 @@ public class GodController : MonoBehaviour
             godDialogueBubble.SetActive(false);
         else
         {
+            Debug.Log("displaying");
             godDialogueBubble.SetActive(true);
-            foreach(SpriteRenderer dialogueImage in dialogueImages)
+            for (int i = 0; i < dialogueImages.Length; i++)
             {
-               // dialogueImage.sprite
+                dialogueImages[i].sprite = currentQuestItems[i].sprite;
             }
         }    
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class PlayerHealth : MonoBehaviour
     public Image heart2;
     public Image heart3;
 
+    public GameObject DeathScreen;
+
     //TEMP VARIABLES
     public bool toDamage;
     public bool toHeal;
+
+    private Player playerMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,9 @@ public class PlayerHealth : MonoBehaviour
 
         toDamage = false;
         toHeal = false;
+
+        DeathScreen = GameObject.Find("GameOverPanel");
+        playerMovement = this.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -56,9 +64,13 @@ public class PlayerHealth : MonoBehaviour
 
         healthCheck();
 
-        if (currentLives < 0)
+        if (currentLives <= 0)
         {
             currentLives = 0;
+            StartCoroutine(DeathSequence());
+            
+            
+            
         }
 
     }
@@ -97,5 +109,15 @@ public class PlayerHealth : MonoBehaviour
             heart2.enabled = false;
             heart3.enabled = false;
         }
+    }
+
+    IEnumerator DeathSequence()
+    {
+        DeathScreen.GetComponent<Animator>().enabled = true;
+        playerMovement.canMove = false;
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject, 2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 }
