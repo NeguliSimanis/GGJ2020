@@ -28,6 +28,8 @@ public class EnemyAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(Delay);
         canAttack = true;
+        //for testing purposes, remove later
+        gameObject.GetComponent<EnemyStats>().DamageEnemy();
     }
 
 }

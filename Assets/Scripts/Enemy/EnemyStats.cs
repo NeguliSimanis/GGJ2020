@@ -20,6 +20,7 @@ public class EnemyStats : MonoBehaviour
     public void DamageEnemy()
     {
         enemyHealth =- 50;
+        Debug.Log("Enemy health at: "+enemyHealth);
         if(enemyHealth <= 0)
         {
             StartCoroutine("Die");
@@ -30,6 +31,7 @@ public class EnemyStats : MonoBehaviour
     private IEnumerator Die()
     {
         yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<LootInventory>().SpawnItem();
         gameObject.SetActive(false);
         StopAllCoroutines();
     }
