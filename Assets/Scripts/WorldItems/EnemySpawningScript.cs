@@ -7,6 +7,8 @@ public class EnemySpawningScript : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
 
+    private GameObject GameManager;
+
     public int maxEnemies;
     public int currentEnemies;
     public float timer;
@@ -16,6 +18,8 @@ public class EnemySpawningScript : MonoBehaviour
         maxEnemies = 3;
         currentEnemies = 0;
         timer = 0f;
+        GameManager = GameObject.Find("Gamemanager");
+        maxEnemies = GameManager.GetComponent<GameManager>().maxEnemy;
     }
 
     // Update is called once per frame
