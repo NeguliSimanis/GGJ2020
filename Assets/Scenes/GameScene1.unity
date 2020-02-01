@@ -719,6 +719,54 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8554949678864856552}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &832417880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832417882}
+  - component: {fileID: 832417881}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Spawners
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &832417881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832417880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b491ae58b0f3df4ebb8c3e562b193f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7815758169579103691, guid: 532c6a16fe4752142948089e635da8b6,
+    type: 3}
+  maxEnemies: 3
+  currentEnemies: 0
+  timer: 0
+--- !u!4 &832417882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832417880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8991704, y: 0.8968457, z: 0.12109375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871106115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3572066136866282184, guid: 5069b6d5cb89f444a87b184ffad2541b,

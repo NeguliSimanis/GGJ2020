@@ -9,6 +9,7 @@ TagManager:
   - Triggers
   - Item
   - God
+  - Spawners
   layers:
   - Default
   - TransparentFX

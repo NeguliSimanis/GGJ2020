@@ -13,6 +13,7 @@ public class QuestItem
 public class GodController : MonoBehaviour
 {
     PlayerHealth playerHealth;
+    int questsComplete = 0;
 
     private float questDuration = 60f;
     [Header("QUEST ITEMS")]
@@ -99,26 +100,40 @@ public class GodController : MonoBehaviour
 
     public void SubmitItemForQuest(ItemType itemType, Sprite sprite)
     {
-        // TODO - CHECK IF CORRECT TYPE
         for (int i = 0; i < currentQuestItems.Count; i++)
         {
             if(currentQuestItems[i].isFound == false) 
             {
+                // quest step failed
                 if (currentQuestItems[i].type != itemType)
                 {
                     playerHealth.DamagePlayer();
+                    GenerateQuest();
                 }
+                // quest step complete
                 else
                 {
-                    Debug.Log("quest step complete");
-                    currentQuestItems[i].isFound = true;
-                    if (i == currentQuestItems.Count - 1)
-                    {
-                        Debug.Log("ALL QUESTS COMPLETE");
-                    }
-                    UpdateQuestItemHUD(true);
+                    CompleteQuestStep(i);
                 }
                 return;
+            }
+        }
+    }
+
+    private void CompleteQuestStep(int questStepID)
+    { 
+        currentQuestItems[questStepID].isFound = true;
+        UpdateQuestItemHUD(true);
+        if (questStepID == 2)
+        {
+            questsComplete++;
+            if (questsComplete == 3)
+            {
+                Debug.Log("ALL QUESTS COMPLETE");
+            }
+            else
+            {
+                GenerateQuest();
             }
         }
     }
@@ -171,14 +186,16 @@ public class GodController : MonoBehaviour
             godDialogueBubble.SetActive(false);
         else
         {
-            
             godDialogueBubble.SetActive(true);
             for (int i = 0; i < dialogueImages.Length; i++)
             {
-                Debug.Log("displaying");
-
                 dialogueImages[i].sprite = currentQuestItems[i].sprite;
             }
         }    
+    }
+
+    public void DealWithPlayerDeath()
+    {
+
     }
 }
