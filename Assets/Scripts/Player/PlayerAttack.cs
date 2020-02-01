@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectile;
+    public GameObject spawnPOS;
+
     public int cooldown;
 
     private bool canAttack;
@@ -19,21 +21,7 @@ public class PlayerAttack : MonoBehaviour
         if (canAttack)
         {
             //dont look at this code, ill rewrite somethng better when we have actual visuals
-            float direction = GetComponent<Player>().horizontal;
-            if(direction == 0)
-            {
-                direction = 2;
-            }
-            if(direction < 0)
-            {
-                direction = -2;
-            }
-            if(direction == 1)
-            {
-                direction = 2;
-            }
-            Vector2 projectileSpawn = new Vector2(transform.position.x + direction, transform.position.y);
-            Instantiate(projectile, projectileSpawn, Quaternion.identity);
+            Instantiate(projectile, spawnPOS.transform.position, Quaternion.identity);
             canAttack = false;
             StartCoroutine("Cooldown");
         }

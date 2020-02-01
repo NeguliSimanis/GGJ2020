@@ -18,7 +18,7 @@ public class Harpoon : MonoBehaviour
         velocity = new Vector3(10 * Time.deltaTime, 0, 0);
         pos = transform.position;
 
-        if (!player.GetComponent<Player>().faceLeft)
+        if (player.transform.rotation.y == 0)
         {
             velocity = new Vector3(10 * 1 * Time.deltaTime, 0, 0);
         }
@@ -53,6 +53,7 @@ public class Harpoon : MonoBehaviour
        if(other.gameObject.tag == "Enemy")
         {
             StopMovement();
+            Debug.Log("hit enemy");
             other.gameObject.GetComponent<EnemyStats>().DamageEnemy();
         }
     }
