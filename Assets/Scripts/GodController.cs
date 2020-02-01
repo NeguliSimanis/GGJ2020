@@ -12,6 +12,8 @@ public class QuestItem
 
 public class GodController : MonoBehaviour
 {
+    PlayerHealth playerHealth;
+
     private float questDuration = 60f;
     [Header("QUEST ITEMS")]
     [SerializeField]
@@ -42,9 +44,11 @@ public class GodController : MonoBehaviour
     #endregion
     private void Start()
     {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
         GenerateQuest();
+        
     }
 
     public void GenerateQuest()
@@ -102,7 +106,7 @@ public class GodController : MonoBehaviour
             {
                 if (currentQuestItems[i].type != itemType)
                 {
-                    Debug.Log("QUEST FAILED");
+                    playerHealth.DamagePlayer();
                 }
                 else
                 {
@@ -117,8 +121,6 @@ public class GodController : MonoBehaviour
                 return;
             }
         }
-        // NO - LOSE LIFE
-        // YES - GAIN LIFE
     }
 
     private void InitializeQuestItemHUD()
