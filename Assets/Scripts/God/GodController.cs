@@ -172,25 +172,21 @@ public class GodController : MonoBehaviour
 
     private void UpdateQuestItemHUD(bool itemFound)
     {
-        Debug.Log("1");
         for (int i = 0; i < currentQuestItems.Count; i++)
         {
-            Debug.Log("2");
             if (currentQuestItems[i].isFound)
             {
-                Debug.Log("3");
                 switch (i)
                 {
                     case 0:
                         questItemHUD0.color = questItemFoundColor;
-                        Debug.Log("4");
                         break;
                     case 1:
                         questItemHUD1.color = questItemFoundColor;
-                        Debug.Log("4");
                         break;
                     case 2:
                         questItemHUD2.color = questItemFoundColor;
+                        DealWithPlayerQuestCompletion();
                         break;
                 }
             }
@@ -211,8 +207,37 @@ public class GodController : MonoBehaviour
         }    
     }
 
+    private void DealWithPlayerQuestCompletion()
+    {
+        StartCoroutine(WinGameAfterDelay());
+    }
+
+    private IEnumerator WinGameAfterDelay()
+    {
+        yield return new WaitForSeconds(1);
+        if (GodScene.instance != null)
+        {
+            GodScene.instance.lastQuestFailed = false;
+            GodScene.instance.questsComplete++;
+        }
+        else
+        {
+            Debug.LogError("GOD NOT DEFINED. START THE GAME FROM GOD SCENE TO AVOID THIS ERRRO");
+        }
+        SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
+    }
+
     public void DealWithPlayerDeath()
     {
+        if (GodScene.instance != null)
+        {
+            GodScene.instance.lastQuestFailed = true;
+            GodScene.instance.questsFailed++;
+        }
+        else
+        {
+            Debug.LogError("GOD NOT DEFINED. START THE GAME FROM GOD SCENE TO AVOID THIS ERRRO");
+        }
         SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
         
     }

@@ -16,6 +16,9 @@ public class GodScene : MonoBehaviour
     #endregion
 
     #region QUEST GENERATION DATA
+    public int questsFailed = 0;
+    public int questsComplete = 0;
+    public bool lastQuestFailed = false;
     [SerializeField]
     private GameObject godScreenQuestIcon;
     public List<QuestItem> currentQuestItems = new List<QuestItem>();
@@ -35,10 +38,6 @@ public class GodScene : MonoBehaviour
     private int nextGodTextID = 0;
     private string[] currentSceneGodTexts =
     {
-        "You have two choices, mortal",
-        "One - perish in the dark abyss,",
-        "Two - bring me what I desire",
-        "and your vessel shall be repaired"
     };
 
     private string[] startGameGodTexts =
@@ -56,6 +55,11 @@ public class GodScene : MonoBehaviour
     private string[] questFailedGodTexts =
     {
         "You have failed",
+    };
+    private string[] gameLost =
+{
+        "Another failure...",
+        "Fate worse than death awaits you..."
     };
     private string bringThisToMe = "Bring this to me";
     #endregion
@@ -90,11 +94,24 @@ public class GodScene : MonoBehaviour
         }
         else
         {
+            SetGodDialogueStrings();
             GenerateQuest();
             isInGodScene = true;
             DisplayNextGodText(true);
             ShowGodQuest(false);
         }
+    }
+
+    void SetGodDialogueStrings()
+    {
+        if (godSceneID < 2)
+            currentSceneGodTexts = startGameGodTexts;
+        else if (lastQuestFailed && questsFailed < 3)
+            currentSceneGodTexts = questFailedGodTexts;
+        else if (lastQuestFailed && questsFailed == 3)
+            currentSceneGodTexts = gameLost;
+        else if (!lastQuestFailed)
+            currentSceneGodTexts = questCompleteGodTexts;
     }
 
     void OnDisable()
@@ -172,6 +189,11 @@ public class GodScene : MonoBehaviour
         if (nextGodTextID == 0)
         {
             InstantiateGodText();
+            if (currentSceneGodTexts[0] == questCompleteGodTexts[0])
+                godSceneText.fontSize = 90;
+            else
+                godSceneText.fontSize = 110;
+            
             godSceneText.text = currentSceneGodTexts[0];
         }
         else if (nextGodTextID == currentSceneGodTexts.Length)
@@ -223,4 +245,5 @@ public class GodScene : MonoBehaviour
     {
         SceneChanger.instance.LoadLevelAfterFade("4_Game");
     }
+
 }
