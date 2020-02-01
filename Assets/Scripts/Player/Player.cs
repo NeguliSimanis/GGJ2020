@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
-        speed = 20f;
-        Upspeed = 40f;
+        speed = 10f;
+        Upspeed = 10f;
         canMove = true;
 
         pauseUI = GameObject.Find("PauseCanvas");
