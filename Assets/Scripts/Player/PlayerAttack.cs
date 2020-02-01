@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     public GameObject projectile;
     public GameObject spawnPOS;
 
+    public GameObject HarpoonSoundObject;
+
     public int cooldown;
 
     private bool canAttack;
@@ -14,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         canAttack = true;
+        HarpoonSoundObject = GameObject.Find("SoundObject-HarpoonSound");
     }
 
     public void Attack()
@@ -21,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
         if (canAttack)
         {
             //dont look at this code, ill rewrite somethng better when we have actual visuals
+            HarpoonSoundObject.GetComponent<AudioSource>().Play();
             Instantiate(projectile, spawnPOS.transform.position, Quaternion.identity);
             canAttack = false;
             StartCoroutine("Cooldown");

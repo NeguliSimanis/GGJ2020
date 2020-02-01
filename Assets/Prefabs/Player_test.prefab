@@ -160,6 +160,7 @@ MonoBehaviour:
   heart2: {fileID: 0}
   heart3: {fileID: 0}
   DeathScreen: {fileID: 0}
+  PlayerHurtAudio: {fileID: 0}
   toDamage: 0
   toHeal: 0
 --- !u!114 &8147385173424146462
