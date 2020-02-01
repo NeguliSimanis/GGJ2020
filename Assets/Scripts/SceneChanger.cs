@@ -48,7 +48,6 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadLevel()
     {
-        Debug.Log("doing ti s" + Time.time);
         //fadeAnimator.SetBool("fadeOut", false);
         //fadeAnimator.SetBool("fadeIn", true);
         fadeAnimator.SetTrigger("in");

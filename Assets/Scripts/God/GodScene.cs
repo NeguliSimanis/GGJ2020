@@ -12,9 +12,12 @@ public class GodScene : MonoBehaviour
     private int godSceneID = 0;
     private string godSceneName;
     private bool isInGodScene = true;
+    private bool isShowingGodQuest = false;
     #endregion
 
     #region QUEST GENERATION DATA
+    [SerializeField]
+    private GameObject godScreenQuestIcon;
     public List<QuestItem> currentQuestItems = new List<QuestItem>();
     private int totalQuestItems = 3;
     [SerializeField]
@@ -47,12 +50,14 @@ public class GodScene : MonoBehaviour
     };
     private string[] questCompleteGodTexts =
     {
-
+        "You have appeased me for now, mortal",
+        "Bring me more, MORE!"
     };
     private string[] questFailedGodTexts =
     {
-
+        "You have failed",
     };
+    private string bringThisToMe = "Bring this to me";
     #endregion
 
     #region INITIALIZATION
@@ -77,6 +82,7 @@ public class GodScene : MonoBehaviour
         if (godSceneID > 0)
             Debug.Log("SHOULD SKIP INTRO");
         godSceneID++;
+        isShowingGodQuest = false;
         if (SceneManager.GetActiveScene().name != godSceneName)
         {
             isInGodScene = false;
@@ -87,18 +93,13 @@ public class GodScene : MonoBehaviour
             GenerateQuest();
             isInGodScene = true;
             DisplayNextGodText(true);
+            ShowGodQuest(false);
         }
     }
 
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-
-    private void Start()
-    {
-        DisplayNextGodText();
     }
     #endregion
 
@@ -136,12 +137,15 @@ public class GodScene : MonoBehaviour
         {
             case ItemType.Boot:
                 newQuestItem.sprite = bootSprite;
+                Debug.Log("adding  boot");
                 break;
             case ItemType.Skull:
                 newQuestItem.sprite = skullSprite;
+                Debug.Log("adding  skull");
                 break;
             case ItemType.Worm:
                 newQuestItem.sprite = wormSprite;
+                Debug.Log("adding  worm");
                 break;
         }
         currentQuestItems.Add(newQuestItem);
@@ -152,7 +156,10 @@ public class GodScene : MonoBehaviour
     {
         if (Input.anyKeyDown && isInGodScene)
         {
-            DisplayNextGodText();
+            if (!isShowingGodQuest)
+                DisplayNextGodText();
+            else
+                LoadNextLevel();
         }
     }
 
@@ -170,6 +177,7 @@ public class GodScene : MonoBehaviour
         else if (nextGodTextID == currentSceneGodTexts.Length)
         {
             ShowGodQuest();
+            InstantiateGodText(false);
             return;
         }
         else
@@ -179,16 +187,36 @@ public class GodScene : MonoBehaviour
         nextGodTextID++;
     }
 
-    private void ShowGodQuest()
+    private void ShowGodQuest(bool show = true)
     {
-        LoadNextLevel();
+        if (!show)
+        {
+            return;
+        }
+        InstantiateGodText(false);
+        GameObject questIcon1 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+        questIcon1.GetComponent<Image>().sprite = currentQuestItems[0].sprite;
+
+        GameObject questIcon2 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+        questIcon2.GetComponent<Image>().sprite = currentQuestItems[1].sprite;
+
+        GameObject questIcon3 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+        questIcon3.GetComponent<Image>().sprite = currentQuestItems[2].sprite;
+        isShowingGodQuest = true;
+
     }
 
-    private void InstantiateGodText()
+    private void InstantiateGodText(bool instantiate = true)
     {
+        if (!instantiate)
+        {
+            godSceneText.enabled = false;
+            return;
+        }
         GameObject newGodTextObject = 
             Instantiate(GodSceneTextObject, GameObject.FindGameObjectWithTag("GodCanvas").transform);
         godSceneText = newGodTextObject.GetComponent<Text>();
+
     }
 
     private void LoadNextLevel()

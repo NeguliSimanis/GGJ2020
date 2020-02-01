@@ -59,6 +59,10 @@ public class GodController : MonoBehaviour
         Debug.Log("should initialize god");
         currentQuestItems.Clear();
         currentQuestItems = newQuestItems;
+        foreach (QuestItem questItem in newQuestItems)
+        {
+            Debug.Log("ADDED CONTROL " + questItem.type);
+        }
         InitializeQuestItemHUD();
         DisplayQuestDialogue(true);
     }

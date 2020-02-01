@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4221754f0af4677439c799e6c8c5699c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godScreenQuestIcon: {fileID: 7036716926848095301, guid: 723c716cf75cb9548940c079c9eb9d51,
+    type: 3}
   bootSprite: {fileID: 21300000, guid: cb59fdff11d750e46a90be870fac8c88, type: 3}
   skullSprite: {fileID: 21300000, guid: a9c3a42569148544dae22d0a6f4506f2, type: 3}
   wormSprite: {fileID: 21300000, guid: 982fdf585f121de46ac277fb5b5b7a0b, type: 3}
@@ -552,6 +554,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1009781161}
     m_Modifications:
+    - target: {fileID: 300108471, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 300108471, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 300108471, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 300108471, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679820558, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679820558, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679820558, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679820558, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698240, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_Name
+      value: GodSceneQuestIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698241, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698241, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698241, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698241, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801698242, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5844327977741039096, guid: f0c2a52298e53d14c9c07a1b0b65348d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 5844327977741039096, guid: f0c2a52298e53d14c9c07a1b0b65348d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.52
+      value: -3.66
       objectReference: {fileID: 0}
     - target: {fileID: 5844327977741039096, guid: f0c2a52298e53d14c9c07a1b0b65348d,
         type: 3}
@@ -665,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 5844327977741039097, guid: f0c2a52298e53d14c9c07a1b0b65348d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0c2a52298e53d14c9c07a1b0b65348d, type: 3}
