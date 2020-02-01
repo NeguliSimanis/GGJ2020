@@ -13,7 +13,9 @@ public class PlayerHealth : MonoBehaviour
     public Image heart2;
     public Image heart3;
 
+    //TEMP VARIABLES
     public bool toDamage;
+    public bool toHeal;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         heart3.enabled = true;
 
         toDamage = false;
+        toHeal = false;
     }
 
     // Update is called once per frame
@@ -40,23 +43,59 @@ public class PlayerHealth : MonoBehaviour
             DamagePlayer();
             toDamage = false;
         }
+        if (toHeal == true)
+        {
+            HealPlayer();
+            toHeal = false;
+        }
     }
 
     public void DamagePlayer()
     {
         currentLives = currentLives - 1;
 
-        if (currentLives == 2)
-            heart1.enabled = false;
-        else if (currentLives == 1)
-            heart2.enabled = false;
-        else if (currentLives == 0)
-            heart3.enabled = false;
+        healthCheck();
 
         if (currentLives < 0)
         {
-
+            currentLives = 0;
         }
 
+    }
+
+    public void HealPlayer()
+    {
+        currentLives++;
+        if (currentLives > maxLives)
+            currentLives = maxLives;
+
+        healthCheck();
+    }
+
+
+    public void healthCheck()
+    {
+        if (currentLives == 3)
+        {
+            heart1.enabled = true;
+            heart2.enabled = true;
+            heart3.enabled = true;
+        }else if( currentLives == 2)
+        {
+            heart1.enabled = false;
+            heart2.enabled = true;
+            heart3.enabled = true;
+        }else if (currentLives == 1)
+        {
+            heart1.enabled = false;
+            heart2.enabled = false;
+            heart3.enabled = true;
+        }
+        else if (currentLives == 0)
+        {
+            heart1.enabled = false;
+            heart2.enabled = false;
+            heart3.enabled = false;
+        }
     }
 }
