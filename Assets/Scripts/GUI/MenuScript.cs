@@ -19,12 +19,12 @@ public class MenuScript : MonoBehaviour
 
     public void onPlay()
     {
-        SceneManager.LoadScene("GameScene1");
+        SceneManager.LoadScene("2_Intro");
     }
 
     public void onOptions()
     {
-        SceneManager.LoadScene("Options");
+        SceneManager.LoadScene("4_Options");
     }
 
     public void onExit()
@@ -34,6 +34,6 @@ public class MenuScript : MonoBehaviour
 
     public void toMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("1_MainMenu");
     }
 }
