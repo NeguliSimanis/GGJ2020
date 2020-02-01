@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum ItemType
 {
@@ -11,6 +12,8 @@ public enum ItemType
 }
 public class Item : MonoBehaviour
 {
+    public AudioSource pickupAudioSource;
+
     [SerializeField]
     private ItemType itemType;
     [SerializeField]
@@ -18,17 +21,24 @@ public class Item : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+
+    private void Start()
+    {
+        pickupAudioSource = GameObject.Find("SoundObject-Pickup").GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             collision.GetComponent<Player>().hasItem = true;
             PickupItem();
+
         }
     }
 
     private void PickupItem()
     {
+        pickupAudioSource.Play();
         if (itemType != ItemType.LifePickup)
         {
             GodController godController = GameObject.FindGameObjectWithTag("God").GetComponent<GodController>();

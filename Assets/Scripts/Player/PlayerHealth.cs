@@ -114,6 +114,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DeathSequence()
     {
         //DeathScreen.GetComponent<Animator>().enabled = true;
+        GetComponent<AudioSource>().Play();
         playerMovement.canMove = false;
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject, 2f);
