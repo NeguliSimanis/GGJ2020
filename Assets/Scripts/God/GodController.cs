@@ -20,8 +20,9 @@ public class GodController : MonoBehaviour
     [Header("QUEST ITEMS")]
     [SerializeField]
     private GameObject[] possibleQuestItems;
-    private List<QuestItem> currentQuestItems = new List<QuestItem>();
-    private int totalQuestItems = 3;
+    public List<QuestItem> currentQuestItems = new List<QuestItem>();
+    [HideInInspector]
+    public int totalQuestItems = 3;
     private int questItemTypeCount;
 
     [Header("GOD QUEST DIALOGUE")]
@@ -52,6 +53,12 @@ public class GodController : MonoBehaviour
         GenerateQuest();
         
     }
+
+    public void InitializeGodController()
+    {
+        Debug.Log("should initialize god");
+    }
+
 
     public void GenerateQuest()
     {

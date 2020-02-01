@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameIntro : MonoBehaviour
 {
-
+    bool sceneLoadCalled = false;
     float loadNextSceneAfter = 3f;
     void Start()
     {
-        StartCoroutine(LoadGameplaySceneAfterDelay());
+       // StartCoroutine(LoadGameplaySceneAfterDelay());
     }
 
    
@@ -17,8 +17,7 @@ public class GameIntro : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            LoadNextScene();
-            
+            LoadNextScene();  
         }
     }
 
@@ -30,6 +29,10 @@ public class GameIntro : MonoBehaviour
 
     private void LoadNextScene()
     {
+        if (sceneLoadCalled)
+            return;
+        sceneLoadCalled = true;
+        Debug.Log("NEXT SCENE LOAD CALLED");
         SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
     }
 }

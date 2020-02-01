@@ -10,6 +10,7 @@ TagManager:
   - Item
   - God
   - Spawners
+  - GodCanvas
   layers:
   - Default
   - TransparentFX
