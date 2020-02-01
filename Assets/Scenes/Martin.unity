@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &237601755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +833,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &725403970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725403965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bf186d7be50df41842946635998068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  Delay: 10
+  canAttack: 0
 --- !u!114 &725403971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 20
   ActiveState: 0
+  attack: {fileID: 725403970}
 --- !u!1 &815804530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1103,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 1982688171109066286, guid: 0b10b981afdd0a74690cb4604106c5fc,
     type: 3}
   spawnPoint: {fileID: 1938672587}
-  hpSlider: {fileID: 1321383980}
+  itemSpawnPoint: {fileID: 0}
+  itemPrefabs: []
 --- !u!4 &1032181026
 Transform:
   m_ObjectHideFlags: 0
@@ -1390,7 +1407,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
