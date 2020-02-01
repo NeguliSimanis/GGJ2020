@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     public float Upspeed;
-
+    public bool canMove;
 
 
     public bool hasItem;
@@ -19,14 +19,13 @@ public class Player : MonoBehaviour
         //rb = GetComponent<Rigidbody2D>();
         speed = 20f;
         Upspeed = 40f;
-
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        
     }
 
     private void FixedUpdate()
@@ -35,13 +34,16 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         Vector3 movement = new Vector3(horizontal, vertical, 0.0f);
 
-        rb.AddForce(movement * speed);
-
-        if(movement != Vector3.zero)
+        if(canMove==true)
         {
-            float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            rb.AddForce(movement * speed);
+            if (movement != Vector3.zero)
+            {
+                float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
         }
+           
     }
 
 }
