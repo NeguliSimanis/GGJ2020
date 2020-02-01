@@ -43,6 +43,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Update ()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z, 0, 0));
+
         if (!playerRef)
         {
             GetPlayer();
