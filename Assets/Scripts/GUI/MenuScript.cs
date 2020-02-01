@@ -19,13 +19,13 @@ public class MenuScript : MonoBehaviour
 
     public void onPlay()
     {
-        SceneChanger.instance.LoadLevelAfterFade("2_Intro");
+        StartCoroutine(SceneLoading("2_Intro"));
         //SceneManager.LoadScene("2_Intro");
     }
 
     public void onOptions()
     {
-        SceneManager.LoadScene("4_Options");
+        StartCoroutine(SceneLoading("5_Options"));
     }
 
     public void onExit()
@@ -35,6 +35,13 @@ public class MenuScript : MonoBehaviour
 
     public void toMainMenu()
     {
-        SceneManager.LoadScene("1_MainMenu");
+        StartCoroutine(SceneLoading("1_MainMenu"));
+    }
+
+
+    IEnumerator SceneLoading(string Scene)
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(Scene);
     }
 }
