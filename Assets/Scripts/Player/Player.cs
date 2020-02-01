@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
     public SpriteRenderer sprite;
 
+    public float maxVelocity = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,9 +57,12 @@ public class Player : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, vertical, 0.0f);
 
+
         if(canMove==true)
         {
-            rb.AddForce(movement * speed);
+            rb.AddRelativeForce(movement * speed);
+
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVelocity);
             if (movement != Vector3.zero)
             {
                 float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
@@ -70,7 +75,7 @@ public class Player : MonoBehaviour
             Debug.Log("Harpoon time");
             playerAttack.Attack();
         }
-           
+
     }
 
 }
