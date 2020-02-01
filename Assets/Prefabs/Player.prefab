@@ -96,6 +96,9 @@ MonoBehaviour:
   rb: {fileID: 1982688171109066275}
   speed: 0
   Upspeed: 0
+  maxHP: 0
+  currentHP: 0
+  Damage: 0
 --- !u!1 &1982688172417150482
 GameObject:
   m_ObjectHideFlags: 0
