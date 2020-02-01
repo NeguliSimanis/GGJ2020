@@ -9,14 +9,17 @@ public class EnemyMovement : MonoBehaviour
     public EnemyState ActiveState = EnemyState.WANDER;
 
     private GameObject playerRef;
-    public EnemyAttack attack;
 
-    IAstarAI ai;
+    private EnemyAttack attack;
+    private EnemyStats stats;
+
+    public IAstarAI ai;
 
     void Start () 
     {
         ai = GetComponent<IAstarAI>();
         attack = GetComponent<EnemyAttack>();
+        stats = GetComponent<EnemyStats>();
     }
 
     Vector3 PickRandomPoint () 
@@ -50,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.WANDER:
                 {
                     //Debug.Log("Entered wander state");
-                    ai.maxSpeed = 2;
+                    ai.maxSpeed = stats.enemySpeed;
                     if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
                     {
                         ai.destination = PickRandomPoint();
@@ -66,14 +69,14 @@ public class EnemyMovement : MonoBehaviour
             case EnemyState.CHASE:
                 {
                     ai.destination = playerRef.transform.position;
-                    ai.maxSpeed = 3;
+                    ai.maxSpeed = stats.enemyChaseSpeed;
                     if(PlayerDistance() > 10)
                     {
                         ActiveState = EnemyState.WANDER;
                     }
                     if(PlayerDistance() < 1)
                     {
-                        attack.Attack(playerRef);
+                        ActiveState = EnemyState.ATTACK;
                     }
                     //Debug.Log("Entered chase state");
                 }
@@ -81,10 +84,7 @@ public class EnemyMovement : MonoBehaviour
 
             case EnemyState.ATTACK:
                 {
-                    if (attack.canAttack)
-                    {
-                        attack.Attack(playerRef);
-                    }
+                    attack.Attack(playerRef);
                     ActiveState = EnemyState.CHASE;
                 }
                 break;
