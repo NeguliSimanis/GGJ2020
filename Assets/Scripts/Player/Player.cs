@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
 
     public PlayerAttack playerAttack;
 
+    public SpriteRenderer sprite;
+
+    public float maxVelocity = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,22 +53,20 @@ public class Player : MonoBehaviour
     {
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
-        if(horizontal < 0)
-        {
-            faceLeft = true;
-        } else
-        {
-            faceLeft = false;
-        } 
+        float lastDirection = 0;
+
         Vector3 movement = new Vector3(horizontal, vertical, 0.0f);
+
 
         if(canMove==true)
         {
-            rb.AddForce(movement * speed);
+            rb.AddRelativeForce(movement * speed);
+
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxVelocity);
             if (movement != Vector3.zero)
             {
                 float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(angle * -1, Vector3.up);
             }
         }
 
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
             Debug.Log("Harpoon time");
             playerAttack.Attack();
         }
-           
+
     }
 
 }
