@@ -37,6 +37,12 @@ public class Player : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, vertical, 0.0f);
 
         rb.AddForce(movement * speed);
+
+        if(movement != Vector3.zero)
+        {
+            float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     public void DamagePlayer(int damage)
