@@ -193,4 +193,9 @@ public class GodController : MonoBehaviour
             }
         }    
     }
+
+    public void DealWithPlayerDeath()
+    {
+
+    }
 }
