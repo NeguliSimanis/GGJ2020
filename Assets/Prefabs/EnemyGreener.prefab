@@ -11,7 +11,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4bf02366d603e8d4a9643354ec911806, type: 2}
+      objectReference: {fileID: 9100000, guid: 681dfc1cda73f5443ab05da27d18f284, type: 2}
     - target: {fileID: 6927825074328149986, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,6 +78,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: bd1e6f8fceae1174da25d6684f478eff,
         type: 3}
+    - target: {fileID: 6927825075702224855, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8910222674125510464, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: inventory.Array.data[0]

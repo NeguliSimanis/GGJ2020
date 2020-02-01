@@ -160,6 +160,9 @@ MonoBehaviour:
   enemySpeed: 2
   enemyChaseSpeed: 3
   enemyHealth: 0
+  enemySprite: {fileID: 6927825075702224855}
+  dedSprite: {fileID: 21300000, guid: 88c173b7cf86d95499cc3faf66405388, type: 3}
+  anim: {fileID: 2378244484105300714}
   movement: {fileID: 0}
 --- !u!61 &2648610018443712214
 BoxCollider2D:
@@ -373,7 +376,7 @@ Animator:
   m_GameObject: {fileID: 6927825075702224849}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cb08bc7a1ada8a45b9428ba243b17ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: c97a1582e70dde04389d7af230eda083, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
