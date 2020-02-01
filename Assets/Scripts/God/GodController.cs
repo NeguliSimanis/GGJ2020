@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuestItem
 {
@@ -107,6 +108,8 @@ public class GodController : MonoBehaviour
                 // quest step failed
                 if (currentQuestItems[i].type != itemType)
                 {
+                    if (playerHealth == null)
+                        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
                     playerHealth.DamagePlayer();
                     GenerateQuest();
                 }
@@ -196,6 +199,7 @@ public class GodController : MonoBehaviour
 
     public void DealWithPlayerDeath()
     {
-
+        SceneManager.LoadScene("3_GodScreen");
+        
     }
 }

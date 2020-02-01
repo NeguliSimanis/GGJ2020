@@ -113,11 +113,10 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator DeathSequence()
     {
-        DeathScreen.GetComponent<Animator>().enabled = true;
+        //DeathScreen.GetComponent<Animator>().enabled = true;
         playerMovement.canMove = false;
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject, 2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+        GameObject.FindGameObjectWithTag("God").GetComponent<GodController>().DealWithPlayerDeath();    
     }
 }
