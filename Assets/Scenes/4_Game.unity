@@ -3099,19 +3099,19 @@ PrefabInstance:
         type: 3}
       propertyPath: bootSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 78d02c322363a90458311afbc78bd7c1,
+      objectReference: {fileID: 21300000, guid: cb59fdff11d750e46a90be870fac8c88,
         type: 3}
     - target: {fileID: 7000189991172172840, guid: fa806d13c2615f048a56280df98efb38,
         type: 3}
       propertyPath: skullSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 549f8c2ac44743c47bfaa64829bfda01,
+      objectReference: {fileID: 21300000, guid: a9c3a42569148544dae22d0a6f4506f2,
         type: 3}
     - target: {fileID: 7000189991172172840, guid: fa806d13c2615f048a56280df98efb38,
         type: 3}
       propertyPath: wormSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6759409b2dcdfef4d9d265fa7509499b,
+      objectReference: {fileID: 21300000, guid: 982fdf585f121de46ac277fb5b5b7a0b,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa806d13c2615f048a56280df98efb38, type: 3}

@@ -50,15 +50,18 @@ public class GodController : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
-        GenerateQuest();
+        //GenerateQuest();
         
     }
 
-    public void InitializeGodController()
+    public void InitializeGodController(List<QuestItem> newQuestItems)
     {
         Debug.Log("should initialize god");
+        currentQuestItems.Clear();
+        currentQuestItems = newQuestItems;
+        InitializeQuestItemHUD();
+        DisplayQuestDialogue(true);
     }
-
 
     public void GenerateQuest()
     {
@@ -206,7 +209,7 @@ public class GodController : MonoBehaviour
 
     public void DealWithPlayerDeath()
     {
-        SceneManager.LoadScene("3_GodScreen");
+        SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
         
     }
 }
