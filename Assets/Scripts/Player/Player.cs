@@ -53,7 +53,15 @@ public class Player : MonoBehaviour
     {
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
-        float lastDirection = 0;
+
+        if(horizontal < 0)
+        {
+            transform.rotation = new Quaternion(0, -180, 0, 0);
+        }
+        if(horizontal > 0)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
 
         Vector3 movement = new Vector3(horizontal, vertical, 0.0f);
 
@@ -66,7 +74,6 @@ public class Player : MonoBehaviour
             if (movement != Vector3.zero)
             {
                 float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle * -1, Vector3.up);
             }
         }
 
