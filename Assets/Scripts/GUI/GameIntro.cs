@@ -24,7 +24,6 @@ public class GameIntro : MonoBehaviour
 
     private IEnumerator LoadGameplaySceneAfterDelay()
     {
-        Debug.Log("stat");
         yield return new WaitForSeconds(loadNextSceneAfter);
         LoadNextScene();
     }

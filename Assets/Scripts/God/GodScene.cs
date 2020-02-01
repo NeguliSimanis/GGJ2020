@@ -25,7 +25,12 @@ public class GodScene : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("4_Game");
+            LoadNextLevel();
         }
+    }
+
+    private void LoadNextLevel()
+    {
+        SceneChanger.instance.LoadLevelAfterFade("4_Game");
     }
 }
