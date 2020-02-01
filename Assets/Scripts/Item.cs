@@ -19,15 +19,21 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        Debug.Log("COLLISION!");
+        if (collision.gameObject.tag == "Player")
         {
+            collision.GetComponent<Player>().hasItem = true;
             PickupItem();
         }
     }
 
     private void PickupItem()
     {
-        Destroy(gameObject);
+        foreach (Transform child in this.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 
 }

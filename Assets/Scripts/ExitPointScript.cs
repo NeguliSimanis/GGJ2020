@@ -24,10 +24,19 @@ public class ExitPointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player"&& isActive==true)
+        if(collision.tag == "Player")
         {
             GameObject GO = collision.gameObject;
-            StartCoroutine(ExitSequence(GO));
+            if (GO.GetComponent<Player>().hasItem == true)
+                isActive = true;
+            else
+                isActive = false;
+
+            if(isActive==true)
+            {
+                StartCoroutine(ExitSequence(GO));
+            }
+
         }
     }
 

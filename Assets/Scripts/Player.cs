@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public int currentHP;
     public int Damage;
 
+    public bool hasItem;
+
     // Start is called before the first frame update
     void Start()
     {
