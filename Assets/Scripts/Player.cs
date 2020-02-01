@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
     public float speed;
     public float Upspeed;
 
-    public int maxHP;
-    public int currentHP;
-    public int Damage;
+
 
     public bool hasItem;
+
+    public GameObject GameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +19,7 @@ public class Player : MonoBehaviour
         //rb = GetComponent<Rigidbody2D>();
         speed = 20f;
         Upspeed = 40f;
-        maxHP = 100;
-        currentHP = maxHP;
+
     }
 
     // Update is called once per frame
@@ -43,11 +42,6 @@ public class Player : MonoBehaviour
             float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-    }
-
-    public void DamagePlayer(int damage)
-    {
-        currentHP = currentHP - damage;
     }
 
 }

@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject playerPrefab = null;
     [SerializeField]
     private GameObject spawnPoint;
-    [SerializeField]
-    private Slider hpSlider = null;
+
 
     private GameObject playerObject = null;
     [SerializeField]
@@ -32,8 +31,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(playerObject!=null)
-            hpSlider.value = playerObject.GetComponent<Player>().currentHP;
 
     }
 

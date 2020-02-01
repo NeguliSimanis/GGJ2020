@@ -19,7 +19,6 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("COLLISION!");
         if (collision.gameObject.tag == "Player")
         {
             collision.GetComponent<Player>().hasItem = true;
