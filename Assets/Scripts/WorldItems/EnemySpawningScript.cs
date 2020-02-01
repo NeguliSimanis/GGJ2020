@@ -60,20 +60,30 @@ public class EnemySpawningScript : MonoBehaviour
         {
             enemyPrefab = bootFish;
             Instantiate(enemyPrefab, this.transform);
+            bootFishes.Add(enemyPrefab);
+            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            newEnemyStats.enemyType = ItemType.Boot;
+            newEnemyStats.enemySpawningScript = this;
         }
         else if (skullFishes.Count < 1)
         {
             enemyPrefab = skullFish;
+            Instantiate(enemyPrefab, this.transform);
+            skullFishes.Add(enemyPrefab);
+            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            newEnemyStats.enemyType = ItemType.Skull;
+            newEnemyStats.enemySpawningScript = this;
         }
         else // worm
         {
             enemyPrefab = wormFish;
+            Instantiate(enemyPrefab, this.transform);
+            wormFishes.Add(enemyPrefab);
+            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            newEnemyStats.enemyType = ItemType.Worm;
+            newEnemyStats.enemySpawningScript = this;
         }
-
-        if (currentEnemies < maxEnemies)
-        {
-            Instantiate(enemyPrefab[Random.Range(0,enemyPrefab)], this.transform);
-        }
+        
 
     }
 }

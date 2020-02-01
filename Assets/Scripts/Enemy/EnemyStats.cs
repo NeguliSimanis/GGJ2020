@@ -61,8 +61,8 @@ public class EnemyStats : MonoBehaviour
                 enemySpawningScript.wormFishes.Remove(this.gameObject);
                 break;
         }
-        
-        Debug.Log("destroying")
+
+        Debug.Log("destroying");
     }
 
 }
