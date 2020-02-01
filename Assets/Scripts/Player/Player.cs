@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     public GameObject GameManager;
 
+    public GameObject pauseUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,18 @@ public class Player : MonoBehaviour
         speed = 20f;
         Upspeed = 40f;
         canMove = true;
+
+        pauseUI = GameObject.Find("PauseCanvas");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown("escape"))
+        {
+            pauseUI.GetComponent<PauseScript>().onPause();
+        }
     }
 
     private void FixedUpdate()
@@ -43,6 +51,7 @@ public class Player : MonoBehaviour
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
+        
            
     }
 
