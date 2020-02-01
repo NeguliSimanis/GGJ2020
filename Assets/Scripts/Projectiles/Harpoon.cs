@@ -35,32 +35,31 @@ public class Harpoon : MonoBehaviour
         transform.position = pos;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player" && rb.velocity.magnitude <= 0)
         {
-            other.GetComponent<PlayerAttack>().RetrieveHarpoon();
+            other.gameObject.GetComponent<PlayerAttack>().RetrieveHarpoon();
             gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("hit enemy");
+            other.gameObject.GetComponent<EnemyStats>().DamageEnemy();
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.layer == 11)
+        {
+            Debug.Log("test");
+            Destroy(gameObject);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-       if(other.gameObject.layer == 11)
-        {
-            StopMovement();
-        }
-       if(other.gameObject.tag == "Enemy")
-        {
-            StopMovement();
-            Debug.Log("hit enemy");
-            other.gameObject.GetComponent<EnemyStats>().DamageEnemy();
-        }
-    }
 
     void StopMovement()
     {
-        rb.isKinematic = true;
+        rb.isKinematic = false;
         rb.velocity = Vector3.zero;
     }
 }

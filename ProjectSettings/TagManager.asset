@@ -10,6 +10,7 @@ TagManager:
   - Item
   - God
   - Spawners
+  - Projectile
   layers:
   - Default
   - TransparentFX

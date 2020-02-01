@@ -4029,5 +4029,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harpoon
       objectReference: {fileID: 0}
+    - target: {fileID: 856436353170711121, guid: d6ba3d70a9f25f6438804ebe88707bb6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ba3d70a9f25f6438804ebe88707bb6, type: 3}
