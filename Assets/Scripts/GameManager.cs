@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        hpSlider.value = playerObject.GetComponent<Player>().currentHP;
+        if(playerObject!=null)
+            hpSlider.value = playerObject.GetComponent<Player>().currentHP;
 
     }
 
