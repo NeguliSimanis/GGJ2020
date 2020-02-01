@@ -1,11 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Pathfinding;
 
 public class EnemyMovement : MonoBehaviour
 {
     public float radius = 20;
+
+    public enum EnemyState { WANDER, CHASE};
+    public EnemyState ActiveState = EnemyState.WANDER;
+
+    private GameObject playerRef;
 
     IAstarAI ai;
 
@@ -23,11 +26,58 @@ public class EnemyMovement : MonoBehaviour
         return point;
     }
 
-    void Update () {
-        if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
+    void GetPlayer()
+    {
+        playerRef = FindObjectOfType<Player>().gameObject;
+    }
+
+    float PlayerDistance()
+    {
+        return Vector2.Distance(playerRef.transform.position, transform.position);
+    }
+
+    void Update ()
+    {
+        if (!playerRef)
         {
-            ai.destination = PickRandomPoint();
-            ai.SearchPath();
+            GetPlayer();
+        }
+
+        switch (ActiveState)
+        {
+            case EnemyState.WANDER:
+                {
+                    Debug.Log("Entered wander state");
+                    ai.maxSpeed = 2;
+                    if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
+                    {
+                        ai.destination = PickRandomPoint();
+                        ai.SearchPath();
+                    }
+                    if (PlayerDistance() < 4)
+                    {
+                        ActiveState = EnemyState.CHASE;
+                    }
+                }
+                break;
+
+            case EnemyState.CHASE:
+                {
+                    ai.destination = playerRef.transform.position;
+                    ai.maxSpeed = 3;
+                    if(PlayerDistance() > 10)
+                    {
+                        ActiveState = EnemyState.WANDER;
+                    }
+                    Debug.Log("Entered chase state");
+                }
+                break;
+
+            default:
+                {
+                    Debug.Log("Entered wander state");
+                }
+                break;
         }
     }
 }
