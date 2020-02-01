@@ -20,18 +20,31 @@ public class GodController : MonoBehaviour
     private int totalQuestItems = 3;
     private int questItemTypeCount;
 
-    [Header("HUD")]
+    [Header("GOD QUEST DIALOGUE")]
     [SerializeField]
     GameObject godDialogueBubble;
     [SerializeField]
     SpriteRenderer[] dialogueImages;
+    [SerializeField]
+    Sprite bootSprite;
+    [SerializeField]
+    Sprite skullSprite;
+    [SerializeField]
+    Sprite wormSprite;
 
+    #region QUEST HUD
+    Image questItemHUD0;
+    Image questItemHUD1;
+    Image questItemHUD2;
+
+    Color questItemDefaultColor = Color.black;
+    Color questItemFoundColor = Color.white;
+    #endregion
     private void Start()
     {
         questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
         GenerateQuest();
-        DisplayQuestDialogue(true);
     }
 
     public void GenerateQuest()
@@ -49,23 +62,35 @@ public class GodController : MonoBehaviour
                 {
                     newItemType = (ItemType)Random.Range(0, questItemTypeCount);
                 }
-                AddQuestItem(newItemType, possibleQuestItems[i]);
+                AddQuestItem(newItemType);
             }
             else
             {
-                AddQuestItem((ItemType)Random.Range(0, questItemTypeCount),possibleQuestItems[i]);
+                AddQuestItem((ItemType)Random.Range(0, questItemTypeCount));
             }
         }
+        InitializeQuestItemHUD();
+        DisplayQuestDialogue(true);
     }
 
-    private void AddQuestItem(ItemType itemType, GameObject itemPrefab)
+    private void AddQuestItem(ItemType itemType)
     {
         QuestItem newQuestItem = new QuestItem();
         newQuestItem.type = itemType;
         newQuestItem.isFound = false;
-        newQuestItem.sprite = itemPrefab.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
+        switch (itemType)
+        {
+            case ItemType.Boot:
+                newQuestItem.sprite = bootSprite;
+                break;
+            case ItemType.Skull:
+                newQuestItem.sprite = skullSprite;
+                break;
+            case ItemType.Worm:
+                newQuestItem.sprite = wormSprite;
+                break;
+        }
         currentQuestItems.Add(newQuestItem);
-        Debug.Log("added quest item  " + newQuestItem.type);
     }
 
     public void SubmitItemForQuest(ItemType itemType, Sprite sprite)
@@ -82,17 +107,60 @@ public class GodController : MonoBehaviour
                 else
                 {
                     Debug.Log("quest step complete");
+                    currentQuestItems[i].isFound = true;
                     if (i == currentQuestItems.Count - 1)
                     {
                         Debug.Log("ALL QUESTS COMPLETE");
                     }
+                    UpdateQuestItemHUD(true);
                 }
                 return;
             }
         }
-
         // NO - LOSE LIFE
         // YES - GAIN LIFE
+    }
+
+    private void InitializeQuestItemHUD()
+    {
+        questItemHUD0 = GameObject.Find("QuestItemIcon").GetComponent<Image>();
+        questItemHUD1 = GameObject.Find("QuestItemIcon (1)").GetComponent<Image>();
+        questItemHUD2 = GameObject.Find("QuestItemIcon (2)").GetComponent<Image>();
+
+        questItemHUD0.sprite = currentQuestItems[0].sprite;
+        questItemHUD1.sprite = currentQuestItems[1].sprite;
+        questItemHUD2.sprite = currentQuestItems[2].sprite;
+
+        questItemHUD0.color = questItemDefaultColor;
+        questItemHUD1.color = questItemDefaultColor;
+        questItemHUD2.color = questItemDefaultColor;
+    }
+
+    private void UpdateQuestItemHUD(bool itemFound)
+    {
+        Debug.Log("1");
+        for (int i = 0; i < currentQuestItems.Count; i++)
+        {
+            Debug.Log("2");
+            if (currentQuestItems[i].isFound)
+            {
+                Debug.Log("3");
+                switch (i)
+                {
+                    case 0:
+                        questItemHUD0.color = questItemFoundColor;
+                        Debug.Log("4");
+                        break;
+                    case 1:
+                        questItemHUD1.color = questItemFoundColor;
+                        Debug.Log("4");
+                        break;
+                    case 2:
+                        questItemHUD2.color = questItemFoundColor;
+                        break;
+                }
+            }
+        }
     }
 
     private void DisplayQuestDialogue(bool display)
@@ -101,10 +169,12 @@ public class GodController : MonoBehaviour
             godDialogueBubble.SetActive(false);
         else
         {
-            Debug.Log("displaying");
+            
             godDialogueBubble.SetActive(true);
             for (int i = 0; i < dialogueImages.Length; i++)
             {
+                Debug.Log("displaying");
+
                 dialogueImages[i].sprite = currentQuestItems[i].sprite;
             }
         }    
