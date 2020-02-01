@@ -6,7 +6,7 @@ public enum ItemType
 {
     Skull,
     Boot,
-    Knife
+    Worm
 }
 public class Item : MonoBehaviour
 {

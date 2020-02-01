@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - Triggers
   - Item
+  - God
   layers:
   - Default
   - TransparentFX
