@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-
+    [HideInInspector]
+    public EnemySpawningScript enemySpawningScript;
+    public ItemType enemyType;
     public int enemySpeed;
     public int enemyChaseSpeed;
 
@@ -40,8 +42,27 @@ public class EnemyStats : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         gameObject.GetComponent<LootInventory>().SpawnItem();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         StopAllCoroutines();
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        switch(enemyType)
+        {
+            case ItemType.Boot:
+                enemySpawningScript.bootFishes.Remove(this.gameObject);
+                break;
+            case ItemType.Skull:
+                enemySpawningScript.skullFishes.Remove(this.gameObject);
+                break;
+            case ItemType.Worm:
+                enemySpawningScript.wormFishes.Remove(this.gameObject);
+                break;
+        }
+        
+        Debug.Log("destroying")
     }
 
 }

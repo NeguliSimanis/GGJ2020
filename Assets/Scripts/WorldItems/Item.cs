@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
 
     private void PickupItem()
     {
-        pickupAudioSource.Play();
+        //pickupAudioSource.Play();
         if (itemType != ItemType.LifePickup)
         {
             GodController godController = GameObject.FindGameObjectWithTag("God").GetComponent<GodController>();

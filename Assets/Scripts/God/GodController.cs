@@ -196,10 +196,13 @@ public class GodController : MonoBehaviour
     private void DisplayQuestDialogue(bool display)
     {
         if (!display)
-            godDialogueBubble.SetActive(false);
+        {
+
+        }
+           // godDialogueBubble.SetActive(false);
         else
         {
-            godDialogueBubble.SetActive(true);
+            //godDialogueBubble.SetActive(true);
             for (int i = 0; i < dialogueImages.Length; i++)
             {
                 dialogueImages[i].sprite = currentQuestItems[i].sprite;

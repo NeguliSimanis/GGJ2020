@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class EnemySpawningScript : MonoBehaviour
 {
-    [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject bootFish;
+    [SerializeField]
+    private GameObject skullFish;
+    [SerializeField]
+    private GameObject wormFish;
+
+    public List<GameObject> bootFishes = new List<GameObject>();
+    public List<GameObject> skullFishes = new List<GameObject>();
+    public List<GameObject> wormFishes = new List<GameObject>();
 
     private GameObject GameManager;
 
     public int maxEnemies;
     public int currentEnemies;
     public float timer;
-    // Start is called before the first frame update
+
     void Start()
     {
-        maxEnemies = 3;
+        maxEnemies = 8;
         currentEnemies = 0;
         timer = 0f;
         GameManager = GameObject.Find("Gamemanager");
         maxEnemies = GameManager.GetComponent<GameManager>().maxEnemy;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        //check current enemy count
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        currentEnemies = enemies.Length;
-        //spawn enemy after 5 seconds, until get to max number of enemies;
-
-
-        if (timer <= 5f)
+        if (timer <= 6f)
         {
             timer += Time.deltaTime;
         }
@@ -44,9 +46,33 @@ public class EnemySpawningScript : MonoBehaviour
 
     public void SpawnEnemies()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        currentEnemies = enemies.Length;
+
+        bool hasSkullEnemy = false; //EnemyGreener
+        bool hasBootEnemy = false; // Enemy 
+        bool hasWormEnemy = false; // EnemyGreen
+
+        if (currentEnemies >= maxEnemies)
+            return;
+
+        if (bootFishes.Count < 1)
+        {
+            enemyPrefab = bootFish;
+            Instantiate(enemyPrefab, this.transform);
+        }
+        else if (skullFishes.Count < 1)
+        {
+            enemyPrefab = skullFish;
+        }
+        else // worm
+        {
+            enemyPrefab = wormFish;
+        }
+
         if (currentEnemies < maxEnemies)
         {
-            Instantiate(enemyPrefab, this.transform);
+            Instantiate(enemyPrefab[Random.Range(0,enemyPrefab)], this.transform);
         }
 
     }
