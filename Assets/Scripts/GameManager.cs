@@ -20,13 +20,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] itemPrefabs;
 
-
+    public int maxEnemy;
 
     void Start()
     {
         spawnPoint = GameObject.Find("PlayerSpawn");
         playerObject = Instantiate(playerPrefab, spawnPoint.transform);
         itemObject = Instantiate(itemPrefabs[Random.Range(0, itemPrefabs.Length)],itemSpawnPoint.transform);
+        maxEnemy = 5;
+
     }
 
     private void Update()
