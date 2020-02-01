@@ -27,8 +27,6 @@ public class SceneChanger : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (fadedIn)
-            fadeAnimator.SetTrigger("fadeIn");
     }
 
     void OnDisable()
@@ -44,14 +42,16 @@ public class SceneChanger : MonoBehaviour
     public void LoadLevelAfterFade(string levelName)
     {
         levelToLoadNext = levelName;
-        fadeAnimator.SetBool("fadeOut", true);  
+        //fadeAnimator.SetBool("fadeOut", true);
+        fadeAnimator.SetTrigger("out");
     }
 
     public void LoadLevel()
     {
-        //fadedIn = true;
-        fadeAnimator.SetBool("fadeOut", false);
-        fadeAnimator.SetBool("fadeIn", true);
+        Debug.Log("doing ti s" + Time.time);
+        //fadeAnimator.SetBool("fadeOut", false);
+        //fadeAnimator.SetBool("fadeIn", true);
+        fadeAnimator.SetTrigger("in");
         SceneManager.LoadScene(levelToLoadNext);
     }
 
