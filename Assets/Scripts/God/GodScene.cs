@@ -125,11 +125,6 @@ public class GodScene : MonoBehaviour
     #endregion
 
     #region GOD QUEST GENERATOR
-    public void LoseGame()
-    {
-
-    }
-
     public void GenerateQuest()
     {
         currentQuestItems.Clear();
@@ -207,7 +202,7 @@ public class GodScene : MonoBehaviour
         }
         else if (nextGodTextID == currentSceneGodTexts.Length)
         {
-            if (isPlayerDefeat)
+            if (isPlayerDefeat || questsComplete == 3)
             {
                 isShowingGodQuest = true;
                 LoadNextLevel();
@@ -260,6 +255,8 @@ public class GodScene : MonoBehaviour
     {
         if (isPlayerDefeat)
             SceneChanger.instance.LoadLevelAfterFade("7_GameLose");
+        else if (questsComplete == 3)
+            SceneChanger.instance.LoadLevelAfterFade("6_GameWin");
         else
             SceneChanger.instance.LoadLevelAfterFade("4_Game");
     }
