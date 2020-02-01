@@ -9,9 +9,13 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject HarpoonSoundObject;
 
-    public int cooldown;
+    public float cooldown;
 
     private bool canAttack;
+
+    public Animator anim;
+
+    bool hasFired;
 
     private void Start()
     {
@@ -24,10 +28,8 @@ public class PlayerAttack : MonoBehaviour
         if (canAttack)
         {
             //dont look at this code, ill rewrite somethng better when we have actual visuals
-            HarpoonSoundObject.GetComponent<AudioSource>().Play();
-            Instantiate(projectile, spawnPOS.transform.position, Quaternion.identity);
-            canAttack = false;
-            StartCoroutine("Cooldown");
+            //HarpoonSoundObject.GetComponent<AudioSource>().Play();
+            anim.SetBool("Attack", true);
         }
     }
 
@@ -35,12 +37,26 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown);
         canAttack = true;
+        hasFired = false;
     }
 
     public void RetrieveHarpoon()
     {
         StopAllCoroutines();
         canAttack = true;
+        hasFired = false;
+    }
+
+    public void SpawnProjectile()
+    {
+        if (!hasFired)
+        {
+            Instantiate(projectile, spawnPOS.transform.position, Quaternion.identity);
+            hasFired = true;
+        }
+        canAttack = false;
+        anim.SetBool("Attack", false);
+        StartCoroutine("Cooldown");
     }
 
 }

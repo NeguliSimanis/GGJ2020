@@ -9,6 +9,11 @@ public class EnemyStats : MonoBehaviour
 
     public int enemyHealth;
 
+    public SpriteRenderer enemySprite;
+
+    public Sprite dedSprite;
+    public Animator anim;
+
     public EnemyMovement movement;
 
     public void Start()
@@ -24,6 +29,8 @@ public class EnemyStats : MonoBehaviour
         if(enemyHealth <= 0)
         {
             GetComponent<AudioSource>().Play();
+            enemySprite.GetComponent<SpriteRenderer>().sprite = dedSprite;
+            anim.SetBool("Dead", true);
             StartCoroutine("Die");
             movement.ai.canMove = false;
         }
