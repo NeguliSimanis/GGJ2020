@@ -17,7 +17,8 @@ public class GameIntro : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            SceneManager.LoadScene("3_GodScreen");
+            LoadNextScene();
+            
         }
     }
 
@@ -25,6 +26,11 @@ public class GameIntro : MonoBehaviour
     {
         Debug.Log("stat");
         yield return new WaitForSeconds(loadNextSceneAfter);
-        SceneManager.LoadScene("3_GodScreen");
+        LoadNextScene();
+    }
+
+    private void LoadNextScene()
+    {
+        SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
     }
 }

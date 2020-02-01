@@ -5,14 +5,54 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField]
+    public static SceneChanger instance;
+
     Animator fadeAnimator;
-    float fadeInAnimationLength = 0.2f;
-    float fadeOutAnimationLength = 0.9f;
+    bool fadedIn = false;
+    private string levelToLoadNext;
 
-    public void LoadLevel(string levelName)
+    void Awake()
     {
+        if (SceneChanger.instance == null)
+            SceneChanger.instance = this;
+        else
+            Destroy(gameObject);
+        DontDestroyOnLoad(this.gameObject);
+    }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (fadedIn)
+            fadeAnimator.SetTrigger("fadeIn");
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void Start()
+    {
+        fadeAnimator = gameObject.GetComponent<Animator>();
+    }
+
+    public void LoadLevelAfterFade(string levelName)
+    {
+        levelToLoadNext = levelName;
+        fadeAnimator.SetBool("fadeOut", true);  
+    }
+
+    public void LoadLevel()
+    {
+        //fadedIn = true;
+        fadeAnimator.SetBool("fadeOut", false);
+        fadeAnimator.SetBool("fadeIn", true);
+        SceneManager.LoadScene(levelToLoadNext);
     }
 
 }

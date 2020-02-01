@@ -19,7 +19,8 @@ public class MenuScript : MonoBehaviour
 
     public void onPlay()
     {
-        SceneManager.LoadScene("2_Intro");
+        SceneChanger.instance.LoadLevelAfterFade("2_Intro");
+        //SceneManager.LoadScene("2_Intro");
     }
 
     public void onOptions()
