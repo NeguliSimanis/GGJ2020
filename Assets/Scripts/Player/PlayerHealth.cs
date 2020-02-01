@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public Image heart3;
 
     public GameObject DeathScreen;
+    public GameObject PlayerHurtAudio;
 
     //TEMP VARIABLES
     public bool toDamage;
@@ -41,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
 
         DeathScreen = GameObject.Find("GameOverPanel");
         playerMovement = this.GetComponent<Player>();
+
+        PlayerHurtAudio = GameObject.Find("SoundObject-PlayerHurt");
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer()
     {
+        
         currentLives = currentLives - 1;
 
         healthCheck();
@@ -67,11 +71,10 @@ public class PlayerHealth : MonoBehaviour
         if (currentLives <= 0)
         {
             currentLives = 0;
-            StartCoroutine(DeathSequence());
-            
-            
-            
+            StartCoroutine(DeathSequence());      
         }
+        else
+            PlayerHurtAudio.GetComponent<AudioSource>().Play();
 
     }
 
@@ -114,7 +117,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DeathSequence()
     {
         //DeathScreen.GetComponent<Animator>().enabled = true;
-        GetComponent<AudioSource>().Play();
+        this.GetComponent<AudioSource>().Play();
         playerMovement.canMove = false;
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject, 2f);

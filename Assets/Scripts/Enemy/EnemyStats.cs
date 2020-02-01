@@ -23,6 +23,7 @@ public class EnemyStats : MonoBehaviour
         Debug.Log("Enemy health at: "+enemyHealth);
         if(enemyHealth <= 0)
         {
+            GetComponent<AudioSource>().Play();
             StartCoroutine("Die");
             movement.ai.canMove = false;
         }
