@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1982688171109066272}
   - component: {fileID: 1982688171109066274}
   - component: {fileID: 114351986095272886}
+  - component: {fileID: 8147385173424146462}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -97,11 +98,13 @@ MonoBehaviour:
   rb: {fileID: 1982688171109066275}
   speed: 0
   Upspeed: 0
-  maxHP: 0
-  currentHP: 0
-  Damage: 0
+  canMove: 0
+  vertical: 0
+  horizontal: 0
   hasItem: 0
   GameManager: {fileID: 0}
+  pauseUI: {fileID: 0}
+  playerAttack: {fileID: 0}
 --- !u!114 &114351986095272886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +123,24 @@ MonoBehaviour:
   heart1: {fileID: 0}
   heart2: {fileID: 0}
   heart3: {fileID: 0}
+  DeathScreen: {fileID: 0}
+  toDamage: 0
+  toHeal: 0
+--- !u!114 &8147385173424146462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982688171109066286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c037707fd6647b946bb88df1c6365367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 856436353170711121, guid: d6ba3d70a9f25f6438804ebe88707bb6,
+    type: 3}
+  cooldown: 1
 --- !u!1 &1982688172417150482
 GameObject:
   m_ObjectHideFlags: 0
