@@ -25,6 +25,7 @@ public class Harpoon : MonoBehaviour
 
         else
         {
+            transform.rotation = new Quaternion(0, -180, 0, 0);
             velocity = new Vector3(10 * -1 * Time.deltaTime, 0, 0);
         }
     }
