@@ -6,26 +6,36 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public AudioSource ac;
+
+    bool reduceVolume = false;
+
     void Start()
     {
         Cursor.visible = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (reduceVolume)
+        {
+            ReduceVolume();
+        }
     }
 
     public void onPlay()
     {
         StartCoroutine(SceneLoading("2_Intro"));
         //SceneManager.LoadScene("2_Intro");
+        reduceVolume = true;
     }
 
     public void onOptions()
     {
         StartCoroutine(SceneLoading("5_Options"));
+        reduceVolume = true;
     }
 
     public void onExit()
@@ -36,6 +46,7 @@ public class MenuScript : MonoBehaviour
     public void toMainMenu()
     {
         StartCoroutine(SceneLoading("1_MainMenu"));
+        reduceVolume = true;
     }
 
 
@@ -44,4 +55,13 @@ public class MenuScript : MonoBehaviour
         yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(Scene);
     }
+
+    void ReduceVolume()
+    {
+        if(ac.volume != 0)
+        {
+            ac.volume -= Time.deltaTime;
+        }
+    }
+
 }

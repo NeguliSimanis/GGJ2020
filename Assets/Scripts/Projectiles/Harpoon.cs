@@ -10,9 +10,15 @@ public class Harpoon : MonoBehaviour
     Vector3 pos;
     Vector3 velocity;
 
+    private AudioSource ac;
+    public AudioClip metalImpact;
+
+    bool impact = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        ac = GetComponent<AudioSource>();
 
         player = FindObjectOfType<Player>(); //Get a direction vector to fire the bullet at.
         velocity = new Vector3(10 * Time.deltaTime, 0, 0);
@@ -32,17 +38,15 @@ public class Harpoon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        pos += velocity;
-        transform.position = pos;
+        if (!impact)
+        {
+            pos += velocity;
+            transform.position = pos;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Player" && rb.velocity.magnitude <= 0)
-        {
-            other.gameObject.GetComponent<PlayerAttack>().RetrieveHarpoon();
-            gameObject.SetActive(false);
-        }
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("hit enemy");
@@ -52,15 +56,22 @@ public class Harpoon : MonoBehaviour
 
         if (other.gameObject.layer == 11)
         {
-            Debug.Log("test");
-            Destroy(gameObject);
+            impact = true;
+            ac.PlayOneShot(metalImpact);
+            StartCoroutine("DestroyObject");
         }
     }
 
 
     void StopMovement()
     {
-        rb.isKinematic = false;
+        rb.isKinematic = true;
         rb.velocity = Vector3.zero;
+    }
+    
+    private IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }
