@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class Player : MonoBehaviour
     public float vertical;
     public float horizontal;
 
+    public AudioClip[] swimSounds;
+    private AudioSource ac;
+
 
     public bool hasItem;
 
@@ -26,6 +31,8 @@ public class Player : MonoBehaviour
 
     public float maxVelocity = 0.1f;
 
+    bool canPlaysound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +44,7 @@ public class Player : MonoBehaviour
         pauseUI = GameObject.Find("PauseCanvas");
         playerAttack = GetComponent<PlayerAttack>();
         faceLeft = false;
+        ac = GetComponent<AudioSource>();
 
     }
 
@@ -74,6 +82,10 @@ public class Player : MonoBehaviour
             if (movement != Vector3.zero)
             {
                 float angle = Mathf.Atan2(0f, movement.x) * Mathf.Rad2Deg;
+                if (!ac.isPlaying)
+                {
+                    ac.PlayOneShot(swimSounds[Random.Range(0, swimSounds.Length)]);
+                }
             }
         }
 

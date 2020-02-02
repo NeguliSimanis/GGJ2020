@@ -136,6 +136,10 @@ MonoBehaviour:
   faceLeft: 0
   vertical: 0
   horizontal: 0
+  swimSounds:
+  - {fileID: 8300000, guid: 5ba777bdc32dcb54783e97a4a60a0f0e, type: 3}
+  - {fileID: 8300000, guid: 20e3157656dd1ea41989eb1d6371ba38, type: 3}
+  - {fileID: 8300000, guid: 06ee2bdaa8027d548bce5037bafd50a5, type: 3}
   hasItem: 0
   GameManager: {fileID: 0}
   pauseUI: {fileID: 0}
