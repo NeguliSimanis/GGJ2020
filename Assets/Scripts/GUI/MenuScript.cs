@@ -14,6 +14,8 @@ public class MenuScript : MonoBehaviour
     void Start()
     {
         Cursor.visible = true;
+        ac = GameObject.Find("ButtonAudioSource").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class MenuScript : MonoBehaviour
 
     public void onPlay()
     {
+        ac.Play();
         SceneChanger.instance.LoadLevelAfterFade("2_Intro");
         //StartCoroutine(SceneLoading("2_Intro"));
         ////SceneManager.LoadScene("2_Intro");
@@ -35,6 +38,7 @@ public class MenuScript : MonoBehaviour
 
     public void onOptions()
     {
+        ac.Play();
         SceneChanger.instance.LoadLevelAfterFade("5_Options");
         //StartCoroutine(SceneLoading("5_Options"));
         //reduceVolume = true;
@@ -47,6 +51,7 @@ public class MenuScript : MonoBehaviour
 
     public void toMainMenu()
     {
+        ac.Play();
         SceneChanger.instance.LoadLevelAfterFade("1_MainMenu");
         //StartCoroutine(SceneLoading("1_MainMenu"));
         //reduceVolume = true;
