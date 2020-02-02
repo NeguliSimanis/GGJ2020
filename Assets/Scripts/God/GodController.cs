@@ -38,6 +38,12 @@ public class GodController : MonoBehaviour
     [SerializeField]
     Sprite wormSprite;
 
+    [Header("PROGRESS TO GAME OVER")]
+    [SerializeField]
+    Transform cogsParent;
+    [SerializeField]
+    GameObject cogIconObject;
+
     #region QUEST HUD
     Image questItemHUD0;
     Image questItemHUD1;
@@ -53,6 +59,14 @@ public class GodController : MonoBehaviour
         DisplayQuestDialogue(false);
         //GenerateQuest();
         
+    }
+
+    private void ShowProgressToGameWin()
+    {
+        for (int i = 0; i < GodScene.instance.questsComplete; i++)
+        {
+            Instantiate(cogIconObject, cogsParent);
+        }
     }
 
     public void InitializeGodController(List<QuestItem> newQuestItems)
