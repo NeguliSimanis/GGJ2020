@@ -12,10 +12,15 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 70d9d54e47b6b3442848c929b107f0e0, type: 2}
+    - target: {fileID: 2648610018443712214, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3648206849275178221, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6927825074328149986, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
@@ -80,12 +85,12 @@ PrefabInstance:
     - target: {fileID: 6927825074328149997, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6927825075702224849, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6927825075702224855, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}

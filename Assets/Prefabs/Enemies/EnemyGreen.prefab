@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8910222674125510469}
   - component: {fileID: 2648610018443712214}
   - component: {fileID: 969982429010495694}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: EnemyGreen
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 6927825075702224854}
   - component: {fileID: 6927825075702224855}
   - component: {fileID: 2378244484105300714}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 8113605383230690690, guid: 5285526b3d588904c960a313d655e559,
         type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285526b3d588904c960a313d655e559, type: 3}

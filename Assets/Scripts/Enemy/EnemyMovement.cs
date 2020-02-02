@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Pathfinding;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class EnemyMovement : MonoBehaviour
 
     public IAstarAI ai;
 
+    bool canAttack;
+
     void Start () 
     {
         ai = GetComponent<IAstarAI>();
         attack = GetComponent<EnemyAttack>();
         stats = GetComponent<EnemyStats>();
+        canAttack = true;
     }
 
     Vector3 PickRandomPoint () 
@@ -32,15 +36,19 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("test");
-        }
+        Debug.Log("test");
     }
 
     void GetPlayer()
     {
         playerRef = FindObjectOfType<Player>().gameObject;
+    }
+
+    private IEnumerator Cooldown()
+    {
+        Debug.Log("starting cooldown");
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
     }
 
     float PlayerDistance()
@@ -83,9 +91,15 @@ public class EnemyMovement : MonoBehaviour
                     {
                         ActiveState = EnemyState.WANDER;
                     }
-                    if(PlayerDistance() < 1)
+                    Debug.Log(PlayerDistance());
+                    if(PlayerDistance() < 1.5f)
                     {
-                        ActiveState = EnemyState.ATTACK;
+                        if (canAttack)
+                        {
+                            canAttack = false;
+                            StartCoroutine("Cooldown");
+                            playerRef.GetComponent<PlayerHealth>().DamagePlayer();
+                        }
                     }
                     //Debug.Log("Entered chase state");
                 }
