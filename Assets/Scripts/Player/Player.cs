@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     public AudioClip[] swimSounds;
     private AudioSource ac;
 
-
     public bool hasItem;
 
     public GameObject GameManager;
