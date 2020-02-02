@@ -27,15 +27,17 @@ public class MenuScript : MonoBehaviour
 
     public void onPlay()
     {
-        StartCoroutine(SceneLoading("2_Intro"));
-        //SceneManager.LoadScene("2_Intro");
-        reduceVolume = true;
+        SceneChanger.instance.LoadLevelAfterFade("2_Intro");
+        //StartCoroutine(SceneLoading("2_Intro"));
+        ////SceneManager.LoadScene("2_Intro");
+        //reduceVolume = true;
     }
 
     public void onOptions()
     {
-        StartCoroutine(SceneLoading("5_Options"));
-        reduceVolume = true;
+        SceneChanger.instance.LoadLevelAfterFade("5_Options");
+        //StartCoroutine(SceneLoading("5_Options"));
+        //reduceVolume = true;
     }
 
     public void onExit()
@@ -45,8 +47,9 @@ public class MenuScript : MonoBehaviour
 
     public void toMainMenu()
     {
-        StartCoroutine(SceneLoading("1_MainMenu"));
-        reduceVolume = true;
+        SceneChanger.instance.LoadLevelAfterFade("1_MainMenu");
+        //StartCoroutine(SceneLoading("1_MainMenu"));
+        //reduceVolume = true;
     }
 
 

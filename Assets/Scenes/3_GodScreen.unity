@@ -141,11 +141,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4221754f0af4677439c799e6c8c5699c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questsFailed: 0
+  questsComplete: 0
+  lastQuestFailed: 0
   godScreenQuestIcon: {fileID: 7036716926848095301, guid: 723c716cf75cb9548940c079c9eb9d51,
     type: 3}
   bootSprite: {fileID: 21300000, guid: cb59fdff11d750e46a90be870fac8c88, type: 3}
   skullSprite: {fileID: 21300000, guid: a9c3a42569148544dae22d0a6f4506f2, type: 3}
   wormSprite: {fileID: 21300000, guid: 982fdf585f121de46ac277fb5b5b7a0b, type: 3}
+  secondCloudSprite: {fileID: 21300000, guid: ef4e4568f8983dd438b5d82d05ab46c9, type: 3}
   GodSceneTextObject: {fileID: 5844327977741039097, guid: f0c2a52298e53d14c9c07a1b0b65348d,
     type: 3}
 --- !u!4 &617583621
@@ -472,6 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242128426}
   - component: {fileID: 1242128425}
+  - component: {fileID: 1242128427}
   m_Layer: 0
   m_Name: GOD
   m_TagString: Untagged
@@ -516,7 +521,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f55c5bd4e3487214aa0c16ac8d7c8157, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 365ecd8a9d2283e428df6e46cdd6d403, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -536,11 +541,30 @@ Transform:
   m_GameObject: {fileID: 1242128424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.057, y: 0.034, z: 0}
-  m_LocalScale: {x: 0.85467005, y: 0.85467005, z: 0.85467005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1242128427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242128424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d48df9045492eee4fb06e79f26746488, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &1550238493 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5844327977741039096, guid: f0c2a52298e53d14c9c07a1b0b65348d,

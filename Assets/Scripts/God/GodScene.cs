@@ -14,6 +14,7 @@ public class GodScene : MonoBehaviour
     private string godSceneName;
     private bool isInGodScene = true;
     private bool isShowingGodQuest = false;
+    bool showingQuestIcons = false;
     #endregion
 
     #region QUEST GENERATION DATA
@@ -30,6 +31,8 @@ public class GodScene : MonoBehaviour
     Sprite skullSprite;
     [SerializeField]
     Sprite wormSprite;
+    [SerializeField]
+    Sprite secondCloudSprite;
     #endregion
 
     #region STRINGS
@@ -66,6 +69,21 @@ public class GodScene : MonoBehaviour
     #endregion
 
     #region INITIALIZATION
+    private void ResetGodSceneData()
+    {
+        isPlayerDefeat = false;
+        godSceneID = 0;
+        isInGodScene = true;
+        isShowingGodQuest = false;
+        showingQuestIcons = false;
+
+        questsFailed = 0;
+        questsComplete = 0;
+        lastQuestFailed = false;
+        nextGodTextID = 0;
+    }   
+
+
     private void Awake()
     {
         if (instance == null)
@@ -91,7 +109,10 @@ public class GodScene : MonoBehaviour
         if (SceneManager.GetActiveScene().name != godSceneName)
         {
             isInGodScene = false;
-            GameObject.FindGameObjectWithTag("God").GetComponent<GodController>().InitializeGodController(currentQuestItems);
+            if (SceneManager.GetActiveScene().name == "4_Game")
+                GameObject.FindGameObjectWithTag("God").GetComponent<GodController>().InitializeGodController(currentQuestItems);
+            else
+                ResetGodSceneData();
         }
         else
         {
@@ -101,6 +122,7 @@ public class GodScene : MonoBehaviour
             DisplayNextGodText(true);
             ShowGodQuest(false);
         }
+        showingQuestIcons = false;
     }
 
     void SetGodDialogueStrings()
@@ -208,7 +230,7 @@ public class GodScene : MonoBehaviour
                 LoadNextLevel();
                 return;
             }
-            ShowGodQuest();
+            StartCoroutine(ShowGodQuest());
             InstantiateGodText(false);
             return;
         }
@@ -219,22 +241,27 @@ public class GodScene : MonoBehaviour
         nextGodTextID++;
     }
 
-    private void ShowGodQuest(bool show = true)
+    private IEnumerator ShowGodQuest(bool show = true)
     {
-        if (!show)
+        if (show && !showingQuestIcons)
         {
-            return;
+            showingQuestIcons = true;
+            Debug.Log("shiw");
+            InstantiateGodText(false);
+            GameObject questIcon1 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+            questIcon1.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[0].sprite;
+            yield return new WaitForSeconds(0.8f);
+
+            GameObject questIcon2 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+            questIcon2.GetComponent<Image>().sprite = secondCloudSprite;
+            questIcon2.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[1].sprite;
+            yield return new WaitForSeconds(0.8f);
+
+            GameObject questIcon3 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
+            questIcon3.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[2].sprite;
+            isShowingGodQuest = true;
+
         }
-        InstantiateGodText(false);
-        GameObject questIcon1 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon1.GetComponent<Image>().sprite = currentQuestItems[0].sprite;
-
-        GameObject questIcon2 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon2.GetComponent<Image>().sprite = currentQuestItems[1].sprite;
-
-        GameObject questIcon3 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon3.GetComponent<Image>().sprite = currentQuestItems[2].sprite;
-        isShowingGodQuest = true;
 
     }
 

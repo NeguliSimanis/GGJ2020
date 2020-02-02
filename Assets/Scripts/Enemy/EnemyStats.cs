@@ -49,7 +49,9 @@ public class EnemyStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        switch(enemyType)
+        if (enemySpawningScript == null)
+            return;
+            switch (enemyType)
         {
             case ItemType.Boot:
                 enemySpawningScript.bootFishes.Remove(this.gameObject);
