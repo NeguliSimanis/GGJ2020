@@ -18,17 +18,17 @@ public class EnemySpawningScript : MonoBehaviour
 
     private GameObject GameManager;
 
-    public int maxEnemies;
+    private int maxEnemies;
     public int currentEnemies;
     public float timer;
 
     void Start()
     {
-        maxEnemies = 8;
+        maxEnemies = 7;
         currentEnemies = 0;
         timer = 0f;
         GameManager = GameObject.Find("Gamemanager");
-        maxEnemies = GameManager.GetComponent<GameManager>().maxEnemy;
+        //maxEnemies = GameManager.GetComponent<GameManager>().maxEnemy;
     }
     
     void Update()
@@ -49,39 +49,42 @@ public class EnemySpawningScript : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         currentEnemies = enemies.Length;
 
-        bool hasSkullEnemy = false; //EnemyGreener
-        bool hasBootEnemy = false; // Enemy 
-        bool hasWormEnemy = false; // EnemyGreen
+        Debug.Log("enemies lenght " + currentEnemies);
+        Debug.Log("max " + maxEnemies);
 
         if (currentEnemies >= maxEnemies)
             return;
+        Debug.Log("pss");
 
         if (bootFishes.Count < 1)
         {
-            enemyPrefab = bootFish;
-            Instantiate(enemyPrefab, this.transform);
-            bootFishes.Add(enemyPrefab);
-            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            GameObject newEnemyPrefab = bootFish;
+            Instantiate(newEnemyPrefab, this.transform);
+            bootFishes.Add(newEnemyPrefab);
+            EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
             newEnemyStats.enemyType = ItemType.Boot;
             newEnemyStats.enemySpawningScript = this;
+            Debug.Log("1");
         }
         else if (skullFishes.Count < 1)
         {
-            enemyPrefab = skullFish;
-            Instantiate(enemyPrefab, this.transform);
-            skullFishes.Add(enemyPrefab);
-            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            GameObject newEnemyPrefab = skullFish;
+            Instantiate(newEnemyPrefab, this.transform);
+            skullFishes.Add(newEnemyPrefab);
+            EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
             newEnemyStats.enemyType = ItemType.Skull;
             newEnemyStats.enemySpawningScript = this;
+            Debug.Log("2");
         }
         else // worm
         {
-            enemyPrefab = wormFish;
-            Instantiate(enemyPrefab, this.transform);
-            wormFishes.Add(enemyPrefab);
-            EnemyStats newEnemyStats = enemyPrefab.GetComponent<EnemyStats>();
+            GameObject newEnemyPrefab = wormFish;
+            Instantiate(newEnemyPrefab, this.transform);
+            wormFishes.Add(newEnemyPrefab);
+            EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
             newEnemyStats.enemyType = ItemType.Worm;
             newEnemyStats.enemySpawningScript = this;
+            Debug.Log("3");
         }
         
 

@@ -13,6 +13,7 @@ public class QuestItem
 
 public class GodController : MonoBehaviour
 {
+    bool isWinning = false;
     PlayerHealth playerHealth;
     int questsComplete = 0;
 
@@ -47,7 +48,7 @@ public class GodController : MonoBehaviour
     #endregion
     private void Start()
     {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        //playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
         //GenerateQuest();
@@ -141,18 +142,20 @@ public class GodController : MonoBehaviour
     { 
         currentQuestItems[questStepID].isFound = true;
         UpdateQuestItemHUD(true);
-        if (questStepID == 2)
-        {
-            questsComplete++;
-            if (questsComplete == 3)
-            {
-                Debug.Log("ALL QUESTS COMPLETE");
-            }
-            else
-            {
-                GenerateQuest();
-            }
-        }
+        //if (questStepID == 2)
+        //    questsComplete++;
+        //if (questStepID == 2)
+        //{
+        //    questsComplete++;
+        //    if (questsComplete == 3)
+        //    {
+        //        Debug.Log("ALL QUESTS COMPLETE");
+        //    }
+        //    else
+        //    {
+        //        GenerateQuest();
+        //    }
+        //}
     }
 
     private void InitializeQuestItemHUD()
@@ -185,6 +188,7 @@ public class GodController : MonoBehaviour
                         questItemHUD1.color = questItemFoundColor;
                         break;
                     case 2:
+                        Debug.Log("yay");
                         questItemHUD2.color = questItemFoundColor;
                         DealWithPlayerQuestCompletion();
                         break;
@@ -212,11 +216,13 @@ public class GodController : MonoBehaviour
 
     private void DealWithPlayerQuestCompletion()
     {
-        StartCoroutine(WinGameAfterDelay());
+        if (!isWinning)
+            StartCoroutine(WinGameAfterDelay());
     }
 
     private IEnumerator WinGameAfterDelay()
     {
+        isWinning = true;
         yield return new WaitForSeconds(1);
         if (GodScene.instance != null)
         {

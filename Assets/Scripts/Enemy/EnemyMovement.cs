@@ -27,7 +27,6 @@ public class EnemyMovement : MonoBehaviour
         var point = Random.insideUnitSphere * radius;
 
         point += ai.position;
-        Debug.Log(point);
         return point;
     }
 
