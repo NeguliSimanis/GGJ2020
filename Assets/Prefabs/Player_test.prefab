@@ -165,7 +165,7 @@ MonoBehaviour:
   heart2: {fileID: 0}
   heart3: {fileID: 0}
   DeathScreen: {fileID: 0}
-  PlayerHurtAudio: {fileID: 0}
+  PlayerHurtAudio: {fileID: 8300000, guid: 86a897fecd08f5b4bb7e86c9c7d2c522, type: 3}
   toDamage: 0
   toHeal: 0
   anim: {fileID: 8319300689427581783}
