@@ -126,6 +126,8 @@ public class GodScene : MonoBehaviour
         {
             SetGodDialogueStrings();
             GenerateQuest();
+            textObject = GameObject.FindGameObjectWithTag("GodSceneText");
+            //textObject.GetComponent<GodText>().GetText(currentSceneGodTexts[nextGodTextID]);
             isInGodScene = true;
             DisplayNextGodText(true);
             ShowGodQuest(false);
