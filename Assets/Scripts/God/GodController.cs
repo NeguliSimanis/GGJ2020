@@ -43,6 +43,12 @@ public class GodController : MonoBehaviour
     Transform cogsParent;
     [SerializeField]
     GameObject cogIconObject;
+    [SerializeField]
+    SpriteRenderer submarineRenderer;
+    [SerializeField]
+    Sprite submarine1;
+    [SerializeField]
+    Sprite submarine2;
 
     #region QUEST HUD
     Image questItemHUD0;
@@ -67,6 +73,11 @@ public class GodController : MonoBehaviour
         {
             Instantiate(cogIconObject, cogsParent);
         }
+        if (GodScene.instance.questsComplete == 1)
+            submarineRenderer.sprite = submarine1;
+        else if (GodScene.instance.questsComplete == 2)
+            submarineRenderer.sprite = submarine2;
+
     }
 
     public void InitializeGodController(List<QuestItem> newQuestItems)
