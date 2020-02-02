@@ -158,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6384294dbbee35f4ea0a9b4a3ffa417a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawningScript: {fileID: 0}
+  enemyType: 0
   enemySpeed: 2
   enemyChaseSpeed: 3
   enemyHealth: 0
@@ -357,7 +359,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a6a728e70b6ba8c46a0199eb808b09a6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6229975, g: 0.8324728, b: 0.9433962, a: 0.7411765}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

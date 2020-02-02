@@ -30,6 +30,8 @@ public class GodScene : MonoBehaviour
     Sprite skullSprite;
     [SerializeField]
     Sprite wormSprite;
+    [SerializeField]
+    Sprite secondCloudSprite;
     #endregion
 
     #region STRINGS
@@ -227,13 +229,14 @@ public class GodScene : MonoBehaviour
         }
         InstantiateGodText(false);
         GameObject questIcon1 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon1.GetComponent<Image>().sprite = currentQuestItems[0].sprite;
+        questIcon1.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[0].sprite;
 
         GameObject questIcon2 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon2.GetComponent<Image>().sprite = currentQuestItems[1].sprite;
+        questIcon2.GetComponent<Image>().sprite = secondCloudSprite;
+        questIcon2.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[1].sprite;
 
         GameObject questIcon3 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
-        questIcon3.GetComponent<Image>().sprite = currentQuestItems[2].sprite;
+        questIcon3.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[2].sprite;
         isShowingGodQuest = true;
 
     }

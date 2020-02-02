@@ -142,20 +142,6 @@ public class GodController : MonoBehaviour
     { 
         currentQuestItems[questStepID].isFound = true;
         UpdateQuestItemHUD(true);
-        //if (questStepID == 2)
-        //    questsComplete++;
-        //if (questStepID == 2)
-        //{
-        //    questsComplete++;
-        //    if (questsComplete == 3)
-        //    {
-        //        Debug.Log("ALL QUESTS COMPLETE");
-        //    }
-        //    else
-        //    {
-        //        GenerateQuest();
-        //    }
-        //}
     }
 
     private void InitializeQuestItemHUD()
