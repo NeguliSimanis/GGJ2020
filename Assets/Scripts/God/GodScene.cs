@@ -9,6 +9,7 @@ public class GodScene : MonoBehaviour
     public static GodScene instance;
 
     #region SCENE DATA
+    private bool isPlayerDefeat = false;
     private int godSceneID = 0;
     private string godSceneName;
     private bool isInGodScene = true;
@@ -109,7 +110,10 @@ public class GodScene : MonoBehaviour
         else if (lastQuestFailed && questsFailed < 3)
             currentSceneGodTexts = questFailedGodTexts;
         else if (lastQuestFailed && questsFailed == 3)
+        {
             currentSceneGodTexts = gameLost;
+            isPlayerDefeat = true;
+        }
         else if (!lastQuestFailed)
             currentSceneGodTexts = questCompleteGodTexts;
     }
@@ -198,6 +202,12 @@ public class GodScene : MonoBehaviour
         }
         else if (nextGodTextID == currentSceneGodTexts.Length)
         {
+            if (isPlayerDefeat || questsComplete == 3)
+            {
+                isShowingGodQuest = true;
+                LoadNextLevel();
+                return;
+            }
             ShowGodQuest();
             InstantiateGodText(false);
             return;
@@ -243,7 +253,12 @@ public class GodScene : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneChanger.instance.LoadLevelAfterFade("4_Game");
+        if (isPlayerDefeat)
+            SceneChanger.instance.LoadLevelAfterFade("7_GameLose");
+        else if (questsComplete == 3)
+            SceneChanger.instance.LoadLevelAfterFade("6_GameWin");
+        else
+            SceneChanger.instance.LoadLevelAfterFade("4_Game");
     }
 
 }
