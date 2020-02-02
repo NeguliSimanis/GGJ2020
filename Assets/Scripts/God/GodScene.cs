@@ -38,6 +38,7 @@ public class GodScene : MonoBehaviour
     #region STRINGS
     [SerializeField]
     private GameObject GodSceneTextObject;
+    public GameObject textObject;
     private Text godSceneText;
     private int nextGodTextID = 0;
     private string[] currentSceneGodTexts =
@@ -209,7 +210,14 @@ public class GodScene : MonoBehaviour
         if (Input.anyKeyDown && isInGodScene)
         {
             if (!isShowingGodQuest)
-                DisplayNextGodText();
+                if (!textObject.GetComponent<GodText>().typing)
+                {
+                    DisplayNextGodText();
+                }
+                else
+                {
+                    textObject.GetComponent<GodText>().ShowFullText();
+                }
             else
                 LoadNextLevel();
         }
@@ -228,8 +236,8 @@ public class GodScene : MonoBehaviour
                 godSceneText.fontSize = 90;
             else
                 godSceneText.fontSize = 110;
-            
-            godSceneText.text = currentSceneGodTexts[0];
+
+            textObject.GetComponent<GodText>().GetText(currentSceneGodTexts[nextGodTextID]);
         }
         else if (nextGodTextID == currentSceneGodTexts.Length)
         {
@@ -245,7 +253,7 @@ public class GodScene : MonoBehaviour
         }
         else
         {
-            godSceneText.text = currentSceneGodTexts[nextGodTextID];
+            textObject.GetComponent<GodText>().GetText(currentSceneGodTexts[nextGodTextID]);
         }
         nextGodTextID++;
     }
@@ -254,6 +262,7 @@ public class GodScene : MonoBehaviour
     {
         if (show && !showingQuestIcons)
         {
+            textObject.GetComponent<GodText>().StopText();
             showingQuestIcons = true;
             Debug.Log("shiw");
             InstantiateGodText(false);
