@@ -63,6 +63,7 @@ public class GodController : MonoBehaviour
         //playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         questItemTypeCount = possibleQuestItems.Length;
         DisplayQuestDialogue(false);
+        ShowProgressToGameWin();
         //GenerateQuest();
         
     }
