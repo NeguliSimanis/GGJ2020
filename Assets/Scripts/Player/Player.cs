@@ -61,11 +61,11 @@ public class Player : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
 
-        if(horizontal < 0)
+        if(horizontal < 0 && GetComponent<PlayerHealth>().currentLives != 0)
         {
             transform.rotation = new Quaternion(0, -180, 0, 0);
         }
-        if(horizontal > 0)
+        if(horizontal > 0 && GetComponent<PlayerHealth>().currentLives != 0)
         {
             transform.rotation = new Quaternion(0, 0, 0, 0);
         }

@@ -21,10 +21,14 @@ public class Item : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        StartCoroutine("DestroyItem");
+    }
 
     private void Start()
     {
-        pickupAudioSource = GameObject.Find("SoundObject-Pickup").GetComponent<AudioSource>();
+        //pickupAudioSource = GameObject.Find("SoundObject-Pickup").GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,6 +47,7 @@ public class Item : MonoBehaviour
         {
             GodController godController = GameObject.FindGameObjectWithTag("God").GetComponent<GodController>();
             godController.SubmitItemForQuest(itemType, itemSprite);
+            Destroy(gameObject);
         }
         else if (itemType == ItemType.LifePickup)
         {
@@ -54,6 +59,12 @@ public class Item : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         Destroy(this.gameObject);
+    }
+
+    private IEnumerator DestroyItem()
+    {
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
     }
 
 }
