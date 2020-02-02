@@ -1939,7 +1939,8 @@ PrefabInstance:
         type: 3}
       propertyPath: wormFish
       value: 
-      objectReference: {fileID: 907599536}
+      objectReference: {fileID: 6927825074328149997, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
     - target: {fileID: 3132325282461506735, guid: 3bb4989001d752740962aa9b96d98ad1,
         type: 3}
       propertyPath: bootFish
@@ -1953,12 +1954,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3132325282461506732, guid: 3bb4989001d752740962aa9b96d98ad1,
     type: 3}
   m_PrefabInstance: {fileID: 899630726}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &907599536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6927825074328149997, guid: d37855ab1c77c854bb98d31504fd2680,
-    type: 3}
-  m_PrefabInstance: {fileID: 1613895319}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &924974229
 GameObject:
@@ -3393,7 +3388,8 @@ PrefabInstance:
         type: 3}
       propertyPath: wormFish
       value: 
-      objectReference: {fileID: 907599536}
+      objectReference: {fileID: 6927825074328149997, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
     - target: {fileID: 3132325282461506735, guid: 3bb4989001d752740962aa9b96d98ad1,
         type: 3}
       propertyPath: bootFish
