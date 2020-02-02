@@ -124,6 +124,7 @@ public class GodScene : MonoBehaviour
         }
         else
         {
+            textObject = GameObject.FindGameObjectWithTag("GodSceneText");
             SetGodDialogueStrings();
             GenerateQuest();
             isInGodScene = true;

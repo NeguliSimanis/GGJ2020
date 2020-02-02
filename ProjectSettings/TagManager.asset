@@ -11,6 +11,7 @@ TagManager:
   - God
   - Spawners
   - GodCanvas
+  - GodSceneText
   layers:
   - Default
   - TransparentFX
