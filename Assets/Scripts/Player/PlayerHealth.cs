@@ -23,6 +23,8 @@ public class PlayerHealth : MonoBehaviour
 
     private Player playerMovement;
 
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentLives <= 0)
         {
             currentLives = 0;
+            anim.speed = 0;
             StartCoroutine(DeathSequence());      
         }
         else

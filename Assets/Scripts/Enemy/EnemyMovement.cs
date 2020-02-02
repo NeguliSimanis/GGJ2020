@@ -30,6 +30,14 @@ public class EnemyMovement : MonoBehaviour
         return point;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("test");
+        }
+    }
+
     void GetPlayer()
     {
         playerRef = FindObjectOfType<Player>().gameObject;
