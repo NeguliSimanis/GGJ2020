@@ -969,11 +969,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5844327977741039097, guid: f0c2a52298e53d14c9c07a1b0b65348d,
-        type: 3}
-      propertyPath: m_TagString
-      value: GodSceneText
-      objectReference: {fileID: 0}
     - target: {fileID: 5844327977741039099, guid: f0c2a52298e53d14c9c07a1b0b65348d,
         type: 3}
       propertyPath: m_Text
