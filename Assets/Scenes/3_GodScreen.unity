@@ -476,6 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242128426}
   - component: {fileID: 1242128425}
+  - component: {fileID: 1242128427}
   m_Layer: 0
   m_Name: GOD
   m_TagString: Untagged
@@ -520,7 +521,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f55c5bd4e3487214aa0c16ac8d7c8157, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 365ecd8a9d2283e428df6e46cdd6d403, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -540,11 +541,30 @@ Transform:
   m_GameObject: {fileID: 1242128424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.057, y: 0.034, z: 0}
-  m_LocalScale: {x: 0.85467005, y: 0.85467005, z: 0.85467005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1242128427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242128424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d48df9045492eee4fb06e79f26746488, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &1550238493 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5844327977741039096, guid: f0c2a52298e53d14c9c07a1b0b65348d,
