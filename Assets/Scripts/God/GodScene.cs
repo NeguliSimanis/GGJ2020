@@ -65,6 +65,13 @@ public class GodScene : MonoBehaviour
         "Another failure...",
         "Fate worse than death awaits you..."
     };
+    private string[] gameWon =
+{
+        "This will suffice, mortal",
+        "Your desire to escape shall be fulfilled",
+        "For I am a merciful god..."
+    };
+
     private string bringThisToMe = "Bring this to me";
     #endregion
 
@@ -136,6 +143,8 @@ public class GodScene : MonoBehaviour
             currentSceneGodTexts = gameLost;
             isPlayerDefeat = true;
         }
+        else if (questsComplete == 3)
+            currentSceneGodTexts = gameWon;
         else if (!lastQuestFailed)
             currentSceneGodTexts = questCompleteGodTexts;
     }
