@@ -91,7 +91,6 @@ public class EnemyMovement : MonoBehaviour
                     {
                         ActiveState = EnemyState.WANDER;
                     }
-                    Debug.Log(PlayerDistance());
                     if(PlayerDistance() < 1.5f)
                     {
                         if (canAttack)

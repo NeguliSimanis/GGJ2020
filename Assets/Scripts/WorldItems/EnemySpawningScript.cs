@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawningScript : MonoBehaviour
 {
+    private ItemType lastSpawnedEnemyType = ItemType.Worm;
     private GameObject enemyPrefab;
     [SerializeField]
     private GameObject bootFish;
@@ -56,6 +57,43 @@ public class EnemySpawningScript : MonoBehaviour
             return;
         Debug.Log("pss");
 
+        switch (lastSpawnedEnemyType)
+        {
+            case ItemType.Worm:
+                {
+                    GameObject newEnemyPrefab = skullFish;
+                    Instantiate(newEnemyPrefab, this.transform);
+                    skullFishes.Add(newEnemyPrefab);
+                    EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
+                    newEnemyStats.enemyType = ItemType.Skull;
+                    newEnemyStats.enemySpawningScript = this;
+                    lastSpawnedEnemyType = ItemType.Skull;
+                    break;
+                }
+            case ItemType.Skull:
+                {
+                    GameObject newEnemyPrefab = bootFish;
+                    Instantiate(newEnemyPrefab, this.transform);
+                    bootFishes.Add(newEnemyPrefab);
+                    EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
+                    newEnemyStats.enemyType = ItemType.Boot;
+                    newEnemyStats.enemySpawningScript = this;
+                    lastSpawnedEnemyType = ItemType.Boot;
+                    break;
+                }
+            case ItemType.Boot:
+                {
+                    GameObject newEnemyPrefab = wormFish;
+                    Instantiate(newEnemyPrefab, this.transform);
+                    wormFishes.Add(newEnemyPrefab);
+                    EnemyStats newEnemyStats = newEnemyPrefab.GetComponent<EnemyStats>();
+                    newEnemyStats.enemyType = ItemType.Worm;
+                    newEnemyStats.enemySpawningScript = this;
+                    lastSpawnedEnemyType = ItemType.Worm;
+                }
+                break;
+        }
+        /*
         if (bootFishes.Count < 1)
         {
             GameObject newEnemyPrefab = bootFish;
@@ -85,7 +123,7 @@ public class EnemySpawningScript : MonoBehaviour
             newEnemyStats.enemyType = ItemType.Worm;
             newEnemyStats.enemySpawningScript = this;
             Debug.Log("3");
-        }
+        }*/
         
 
     }
