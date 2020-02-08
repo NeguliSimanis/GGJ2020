@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public bool toHeal;
 
     private bool flashing;
+    public bool isInvulnerable;
 
     private Player playerMovement;
 
@@ -69,18 +70,25 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer()
     {
-        currentLives = currentLives - 1;
-        reduceHearts();
-        StartCoroutine("Flash");
-
-        if (currentLives <= 0)
+        if (!isInvulnerable)
         {
-            currentLives = 0;
-            anim.speed = 0;
-            StartCoroutine(DeathSequence());
+            currentLives = currentLives - 1;
+            reduceHearts();
+            StartCoroutine("Flash");
+
+            if (currentLives <= 0)
+            {
+                currentLives = 0;
+                anim.speed = 0;
+                StartCoroutine(DeathSequence());
+            }
+            else
+            {
+                StartCoroutine("Invulnerable");
+                gameObject.GetComponent<AudioSource>().PlayOneShot(PlayerHurtAudio);
+            }
+
         }
-        else
-            gameObject.GetComponent<AudioSource>().PlayOneShot(PlayerHurtAudio);
 
     }
 
@@ -123,4 +131,18 @@ public class PlayerHealth : MonoBehaviour
         return new WaitForSeconds(0.1f);
         flashing = false;
     }
+
+    private IEnumerator Invulnerable()
+    {
+        isInvulnerable = true;
+        for (int n = 0; n < 4; n++)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            yield return new WaitForSeconds(0.15f);
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(0.15f);
+        }
+        isInvulnerable = false;
+    }
+
 }
