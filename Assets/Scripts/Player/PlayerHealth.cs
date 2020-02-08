@@ -10,11 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentLives;
     public int Damage;
 
-    public Image heart1;
-    public Image heart2;
-    public Image heart3;
-    public Image heart4;
-    public Image heart5;
+    public List<Image> hearts = new List<Image>();
 
     public GameObject DeathScreen;
     [SerializeField]
@@ -34,17 +30,11 @@ public class PlayerHealth : MonoBehaviour
         maxLives = 5;
         currentLives = maxLives;
 
-        heart1 = GameObject.Find("Heart1").GetComponent<Image>();
-        heart2 = GameObject.Find("Heart2").GetComponent<Image>();
-        heart3 = GameObject.Find("Heart3").GetComponent<Image>();
-        heart4 = GameObject.Find("Heart3 (1)").GetComponent<Image>();
-        heart5 = GameObject.Find("Heart3 (2)").GetComponent<Image>();
-
-        heart1.enabled = true;
-        heart2.enabled = true;
-        heart3.enabled = true;
-        heart4.enabled = true;
-        heart5.enabled = true;
+        for(int i = 1; i <= 5; i++)
+        {
+            Image heart = GameObject.Find("Heart" + i).GetComponent<Image>();
+            hearts.Add(heart);
+        }
 
         toDamage = false;
         toHeal = false;
@@ -72,10 +62,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer()
     {
-        
         currentLives = currentLives - 1;
-
-        healthCheck();
+        reduceHearts();
 
         if (currentLives <= 0)
         {
@@ -84,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(DeathSequence());
         }
         else
-            this.gameObject.GetComponent<AudioSource>().PlayOneShot(PlayerHurtAudio);
+            gameObject.GetComponent<AudioSource>().PlayOneShot(PlayerHurtAudio);
 
     }
 
@@ -94,69 +82,20 @@ public class PlayerHealth : MonoBehaviour
         if (currentLives > maxLives)
             currentLives = maxLives;
 
-        healthCheck();
     }
 
-
-    public void healthCheck()
+    private void reduceHearts()
     {
-        if (currentLives == 5)
-        {
-            heart1.enabled = true;
-            heart2.enabled = true;
-            heart3.enabled = true;
-            heart4.enabled = true;
-            heart5.enabled = true;
-        }
-        if (currentLives == 4)
-        {
-            heart1.enabled = true;
-            heart2.enabled = true;
-            heart3.enabled = true;
-            heart4.enabled = true;
-            heart5.enabled = false;
-        }
-        if (currentLives == 3)
-        {
-            heart1.enabled = true;
-            heart2.enabled = true;
-            heart3.enabled = true;
-            heart4.enabled = false;
-            heart5.enabled = false;
-        }
-        else if( currentLives == 2)
-        {
-            heart1.enabled = true;
-            heart2.enabled = true;
-            heart3.enabled = false;
-            heart4.enabled = false;
-            heart5.enabled = false;
-        }
-        else if (currentLives == 1)
-        {
-            heart1.enabled = true;
-            heart2.enabled = false;
-            heart3.enabled = false;
-            heart4.enabled = false;
-            heart5.enabled = false;
-        }
-        else if (currentLives == 0)
-        {
-            heart1.enabled = false;
-            heart2.enabled = false;
-            heart3.enabled = false;
-            heart4.enabled = false;
-            heart5.enabled = false;
-        }
+        hearts[currentLives].enabled = false;
     }
 
     IEnumerator DeathSequence()
     {
         //DeathScreen.GetComponent<Animator>().enabled = true;
-        this.GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play();
         playerMovement.canMove = false;
         yield return new WaitForSeconds(3f);
-        Destroy(this.gameObject, 2f);
+        Destroy(gameObject, 2f);
         GameObject.FindGameObjectWithTag("God").GetComponent<GodController>().DealWithPlayerDeath();    
     }
 }
