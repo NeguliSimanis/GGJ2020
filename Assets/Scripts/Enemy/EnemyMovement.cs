@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     public IAstarAI ai;
 
-    bool canAttack;
+    public bool canAttack;
 
     void Start () 
     {

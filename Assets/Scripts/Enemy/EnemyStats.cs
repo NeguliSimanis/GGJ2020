@@ -43,9 +43,12 @@ public class EnemyStats : MonoBehaviour
 
     private IEnumerator Die()
     {
+        movement.canAttack = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
         yield return new WaitForSeconds(1f);
         gameObject.GetComponent<LootInventory>().SpawnItem();
         //gameObject.SetActive(false);
+        
         StopAllCoroutines();
         Destroy(gameObject);
     }
