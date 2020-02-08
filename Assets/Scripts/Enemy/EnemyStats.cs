@@ -30,7 +30,6 @@ public class EnemyStats : MonoBehaviour
     {
         enemyHealth =- 50;
         StartCoroutine("Flash");
-        Debug.Log("Enemy health at: "+enemyHealth);
         if(enemyHealth <= 0)
         {
             GetComponent<AudioSource>().Play();
@@ -81,8 +80,6 @@ public class EnemyStats : MonoBehaviour
                 enemySpawningScript.wormFishes.Remove(this.gameObject);
                 break;
         }
-
-        Debug.Log("destroying");
     }
 
 }

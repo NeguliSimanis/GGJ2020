@@ -49,7 +49,6 @@ public class Harpoon : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("hit enemy");
             other.gameObject.GetComponent<EnemyStats>().DamageEnemy();
             Destroy(gameObject);
         }

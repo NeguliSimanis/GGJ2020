@@ -23,6 +23,8 @@ public class EnemySpawningScript : MonoBehaviour
     public int currentEnemies;
     public float timer;
 
+    private GameObject playerRef;
+
     void Start()
     {
         maxEnemies = 7;
@@ -31,17 +33,29 @@ public class EnemySpawningScript : MonoBehaviour
         GameManager = GameObject.Find("Gamemanager");
         //maxEnemies = GameManager.GetComponent<GameManager>().maxEnemy;
     }
-    
+
     void Update()
     {
+        if (!playerRef)
+        {
+            playerRef = GameObject.FindGameObjectWithTag("Player");
+        }
+
         if (timer <= 6f)
         {
             timer += Time.deltaTime;
         }
         else
         {
-            timer = 0;
-            SpawnEnemies();
+            float dist = Vector2.Distance(playerRef.transform.position, transform.position);
+            if(dist >= 7.5f)
+            {
+                Debug.Log("Player distance:" + dist);
+                timer = 0;
+                SpawnEnemies();
+            } else {
+                timer = 3;
+            }
         }
     }
 
