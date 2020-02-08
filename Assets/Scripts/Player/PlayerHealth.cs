@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentLives;
     public int Damage;
 
+    private Image DamageImage;
+
     public List<Image> hearts = new List<Image>();
 
     public GameObject DeathScreen;
@@ -19,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     //TEMP VARIABLES
     public bool toDamage;
     public bool toHeal;
+
+    private bool flashing;
 
     private Player playerMovement;
 
@@ -36,8 +40,11 @@ public class PlayerHealth : MonoBehaviour
             hearts.Add(heart);
         }
 
+        DamageImage = GameObject.Find("DamageImage").GetComponent<Image>();
+
         toDamage = false;
         toHeal = false;
+        flashing = false;
 
         DeathScreen = GameObject.Find("GameOverPanel");
         playerMovement = this.GetComponent<Player>();
@@ -64,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentLives = currentLives - 1;
         reduceHearts();
+        StartCoroutine("Flash");
 
         if (currentLives <= 0)
         {
@@ -87,6 +95,11 @@ public class PlayerHealth : MonoBehaviour
     private void reduceHearts()
     {
         hearts[currentLives].enabled = false;
+        if(currentLives != 0)
+        {
+            float modifier = 10 / currentLives;
+            DamageImage.SetTransparency(0.1f * modifier);
+        }
     }
 
     IEnumerator DeathSequence()
@@ -97,5 +110,17 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Destroy(gameObject, 2f);
         GameObject.FindGameObjectWithTag("God").GetComponent<GodController>().DealWithPlayerDeath();    
+    }
+
+    public IEnumerator Flash()
+    {
+        flashing = true;
+        GetComponent<Renderer>().material.SetFloat("_FlashAmount", 0.5f);
+        yield
+        return new WaitForSeconds(0.25f);
+        GetComponent<Renderer>().material.SetFloat("_FlashAmount", 0);
+        yield
+        return new WaitForSeconds(0.1f);
+        flashing = false;
     }
 }

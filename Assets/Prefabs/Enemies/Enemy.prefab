@@ -54,6 +54,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 305435390039408637, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2378244484105300714, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_Controller
@@ -155,6 +160,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 10.8
       objectReference: {fileID: 0}
+    - target: {fileID: 6927825075702224855, guid: d37855ab1c77c854bb98d31504fd2680,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbd6952363f439347befb9971182c8ec, type: 2}
     - target: {fileID: 8897115253288550185, guid: d37855ab1c77c854bb98d31504fd2680,
         type: 3}
       propertyPath: m_RootOrder

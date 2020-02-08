@@ -214,6 +214,7 @@ MonoBehaviour:
   enemyHealth: 0
   enemySprite: {fileID: 6927825075702224855}
   dedSprite: {fileID: 21300000, guid: 88c173b7cf86d95499cc3faf66405388, type: 3}
+  currentSprite: {fileID: 6927825075702224855}
   anim: {fileID: 2378244484105300714}
   movement: {fileID: 0}
 --- !u!61 &2648610018443712214
@@ -408,7 +409,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dbd6952363f439347befb9971182c8ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

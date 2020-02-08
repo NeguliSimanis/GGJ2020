@@ -10,10 +10,12 @@ public class EnemyStats : MonoBehaviour
     public int enemyChaseSpeed;
 
     public int enemyHealth;
+    private bool flashing;
 
     public SpriteRenderer enemySprite;
 
     public Sprite dedSprite;
+    public SpriteRenderer currentSprite;
     public Animator anim;
 
     public EnemyMovement movement;
@@ -27,6 +29,7 @@ public class EnemyStats : MonoBehaviour
     public void DamageEnemy()
     {
         enemyHealth =- 50;
+        StartCoroutine("Flash");
         Debug.Log("Enemy health at: "+enemyHealth);
         if(enemyHealth <= 0)
         {
@@ -45,6 +48,18 @@ public class EnemyStats : MonoBehaviour
         //gameObject.SetActive(false);
         StopAllCoroutines();
         Destroy(gameObject);
+    }
+
+    public IEnumerator Flash()
+    {
+        flashing = true;
+        currentSprite.GetComponent<Renderer>().material.SetFloat("_FlashAmount", 0.8f);
+        yield
+        return new WaitForSeconds(0.25f);
+        currentSprite.GetComponent<Renderer>().material.SetFloat("_FlashAmount", 0);
+        yield
+        return new WaitForSeconds(0.1f);
+        flashing = false;
     }
 
     private void OnDestroy()
