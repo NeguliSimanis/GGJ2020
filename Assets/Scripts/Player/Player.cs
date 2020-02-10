@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown("escape"))
         {
-            pauseUI.GetComponent<PauseScript>().onPause();
+            //pauseUI.GetComponent<PauseScript>().onPause();
         }
     }
 
@@ -88,9 +88,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Harpoon time");
             playerAttack.Attack();
         }
 

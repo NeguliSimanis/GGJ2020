@@ -109,7 +109,6 @@ public class GodScene : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("NEW SCENE");
         if (godSceneID > 0)
             Debug.Log("SHOULD SKIP INTRO");
         godSceneID++;
@@ -191,15 +190,12 @@ public class GodScene : MonoBehaviour
         {
             case ItemType.Boot:
                 newQuestItem.sprite = bootSprite;
-                Debug.Log("adding  boot");
                 break;
             case ItemType.Skull:
                 newQuestItem.sprite = skullSprite;
-                Debug.Log("adding  skull");
                 break;
             case ItemType.Worm:
                 newQuestItem.sprite = wormSprite;
-                Debug.Log("adding  worm");
                 break;
         }
         currentQuestItems.Add(newQuestItem);
@@ -265,7 +261,7 @@ public class GodScene : MonoBehaviour
         {
             textObject.GetComponent<GodText>().StopText();
             showingQuestIcons = true;
-            Debug.Log("shiw");
+
             InstantiateGodText(false);
             GameObject questIcon1 = Instantiate(godScreenQuestIcon, godSceneText.gameObject.transform);
             questIcon1.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = currentQuestItems[0].sprite;

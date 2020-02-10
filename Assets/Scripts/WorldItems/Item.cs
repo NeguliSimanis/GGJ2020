@@ -12,7 +12,9 @@ public enum ItemType
 }
 public class Item : MonoBehaviour
 {
-    public AudioSource pickupAudioSource;
+    //private AudioSource pickupAudioSource;
+    [SerializeField]
+    AudioClip itemPickupSFX;
 
     [SerializeField]
     private ItemType itemType;
@@ -26,10 +28,6 @@ public class Item : MonoBehaviour
         StartCoroutine("DestroyItem");
     }
 
-    private void Start()
-    {
-        //pickupAudioSource = GameObject.Find("SoundObject-Pickup").GetComponent<AudioSource>();
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -42,7 +40,6 @@ public class Item : MonoBehaviour
 
     private void PickupItem()
     {
-        //pickupAudioSource.Play();
         if (itemType != ItemType.LifePickup)
         {
             GodController godController = GameObject.FindGameObjectWithTag("God").GetComponent<GodController>();
@@ -63,7 +60,7 @@ public class Item : MonoBehaviour
 
     private IEnumerator DestroyItem()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         Destroy(gameObject);
     }
 

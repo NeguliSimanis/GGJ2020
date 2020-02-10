@@ -32,7 +32,6 @@ public class GameIntro : MonoBehaviour
         if (sceneLoadCalled)
             return;
         sceneLoadCalled = true;
-        Debug.Log("NEXT SCENE LOAD CALLED");
         SceneChanger.instance.LoadLevelAfterFade("3_GodScreen");
     }
 }

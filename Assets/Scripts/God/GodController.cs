@@ -17,6 +17,8 @@ public class GodController : MonoBehaviour
     PlayerHealth playerHealth;
     int questsComplete = 0;
 
+    [SerializeField]
+    AudioClip itemPickupSFX;
     private float questDuration = 60f;
     [Header("QUEST ITEMS")]
     [SerializeField]
@@ -83,13 +85,8 @@ public class GodController : MonoBehaviour
 
     public void InitializeGodController(List<QuestItem> newQuestItems)
     {
-        Debug.Log("should initialize god");
         currentQuestItems.Clear();
         currentQuestItems = newQuestItems;
-        foreach (QuestItem questItem in newQuestItems)
-        {
-            Debug.Log("ADDED CONTROL " + questItem.type);
-        }
         InitializeQuestItemHUD();
         DisplayQuestDialogue(true);
     }
@@ -158,6 +155,7 @@ public class GodController : MonoBehaviour
                 else
                 {
                     CompleteQuestStep(i);
+                    SceneChanger.instance.PlayAudioOneShot(itemPickupSFX);
                 }
                 return;
             }

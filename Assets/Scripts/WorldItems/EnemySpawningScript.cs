@@ -64,12 +64,8 @@ public class EnemySpawningScript : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         currentEnemies = enemies.Length;
 
-        Debug.Log("enemies lenght " + currentEnemies);
-        Debug.Log("max " + maxEnemies);
-
         if (currentEnemies >= maxEnemies)
             return;
-        Debug.Log("pss");
 
         switch (lastSpawnedEnemyType)
         {
