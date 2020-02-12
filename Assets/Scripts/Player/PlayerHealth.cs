@@ -106,7 +106,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentLives != 0)
         {
             float modifier = 10 / currentLives;
-            DamageImage.SetTransparency(0.1f * modifier);
+            DamageImage.SetTransparency(0.05f * modifier);
         }
     }
 
